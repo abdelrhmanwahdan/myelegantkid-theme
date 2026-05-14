@@ -78,23 +78,49 @@
     {% hook 'head:start' %}
     {% hook head %}
     {% block styles %}{% endblock %}
+
+    {# MEK Brand Fonts — preconnect for speed #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Marcellus&family=Marhey:wght@400;500;600&family=Inter:wght@400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Marcellus&family=Marhey:wght@400;500;600&family=Inter:wght@400;500&display=swap">
+
     <link rel="stylesheet" href="{{ 'app.css' | asset }}">
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
-    
+
     <style>
         :root {
-            --font-main: '{{theme.font.name}}';
+            /* Salla theme vars */
+            --font-main: '{{theme.font.name}}', 'Marhey', sans-serif;
             --color-primary: {{ theme.color.primary }};
             --color-primary-dark: {{ theme.color.darker(0.15) }};
             --color-primary-light: {{ theme.color.lighter(0.15) }};
             --color-primary-reverse: {{ theme.color.reverse_text }};
+
+            /* MEK brand tokens */
+            --mek-font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+            --mek-font-logo:    'Marcellus', 'Times New Roman', serif;
+            --mek-font-body:    'Inter', system-ui, sans-serif;
+            --mek-font-arabic:  'Marhey', 'Tajawal', system-ui, sans-serif;
+
+            --mek-ink:       #2a201a;
+            --mek-ink-soft:  #4a3f37;
+            --mek-bone:      #faf5ec;
+            --mek-oat:       #f1ead9;
+            --mek-cream:     #f6f1e8;
+            --mek-sand:      #e8dfca;
+            --mek-mist:      #b8a98f;
+            --mek-line:      #ddd2bc;
+            --mek-gold:      #b89464;
+            --mek-gold-deep: #8a6e48;
+            --mek-pearl:     #ffffff;
         }
     </style>
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
 </head>
-<body id="app" class="theme-raed overflow-x-hidden {% hook 'body:classes' %}
+<body id="app" class="theme-mek-atelier overflow-x-hidden {% hook 'body:classes' %}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
   {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}

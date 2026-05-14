@@ -1,11 +1,11 @@
 {
-  "name": "theme-raed",
-  "version": "1.0.3",
-  "description": "Salla Theme",
+  "name": "myelegantkid-atelier",
+  "version": "1.0.0",
+  "description": "MyElegantKid Atelier — Salla Twilight Theme",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SallaApp/theme-raed.git"
+    "url": "git+https://github.com/abdelrhmanwahdan/myelegantkid-theme.git"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",

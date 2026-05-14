@@ -34,7 +34,19 @@ module.exports = {
                 'dark'         : '#1D1F1F',
                 'darker'       : '#0E0F0F',
                 'danger'       : '#AE0A0A',
-                'primary-dark' : 'var(--color-primary-dark)'
+                'primary-dark' : 'var(--color-primary-dark)',
+                /* MEK Brand Palette */
+                'ink'          : '#2a201a',
+                'ink-soft'     : '#4a3f37',
+                'bone'         : '#faf5ec',
+                'oat'          : '#f1ead9',
+                'cream'        : '#f6f1e8',
+                'sand'         : '#e8dfca',
+                'mist'         : '#b8a98f',
+                'line'         : '#ddd2bc',
+                'gold'         : '#b89464',
+                'gold-deep'    : '#8a6e48',
+                'pearl'        : '#ffffff',
             },
             spacing: {
               '3.75': '15px',

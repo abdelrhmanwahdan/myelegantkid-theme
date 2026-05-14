@@ -1,0 +1,70 @@
+/* MEK Atelier — Typography Base */
+
+/* Body: Arabic-first, Marhey for RTL, Inter for LTR */
+.theme-mek-atelier body,
+.theme-mek-atelier {
+    font-family: var(--mek-font-arabic);
+    font-weight: 400;
+    color: var(--mek-ink);
+    background-color: var(--mek-cream);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.005em;
+}
+
+[dir="ltr"] .theme-mek-atelier body,
+[dir="ltr"] .theme-mek-atelier {
+    font-family: var(--mek-font-body);
+}
+
+/* Display headings */
+.mek-display {
+    font-family: var(--mek-font-display);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    line-height: 1.1;
+}
+[dir="rtl"] .mek-display {
+    font-family: var(--mek-font-arabic);
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.mek-display-italic {
+    font-family: var(--mek-font-display);
+    font-style: italic;
+    font-weight: 400;
+}
+[dir="rtl"] .mek-display-italic {
+    font-family: var(--mek-font-arabic);
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* Logo wordmark */
+.mek-logo {
+    font-family: var(--mek-font-logo);
+    letter-spacing: 0.18em;
+    font-weight: 400;
+}
+
+/* Animated underline link */
+.mek-link {
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        inset-inline-start: 0;
+        bottom: -3px;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: inline-end;
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    &:hover::after {
+        transform: scaleX(1);
+        transform-origin: inline-start;
+    }
+}
