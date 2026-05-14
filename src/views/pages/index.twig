@@ -7,7 +7,16 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
-    {% component home %}
+    {% component 'home.mek-hero' %}
+    {% component 'home.mek-featured-categories' %}
+    {% component 'home.mek-bestsellers' %}
+    {% component 'home.mek-marquee' %}
+    {% component 'home.mek-collections' %}
+    {% component 'home.mek-editorial-banner' %}
+    {% component 'home.mek-curated' %}
+    {% component 'home.mek-story' %}
+    {% component 'home.mek-testimonials' %}
+    {% component 'home.mek-community' %}
 {% endblock %}
 {% block scripts %}
     <script defer src="{{ 'home.js' | asset }}"></script>
