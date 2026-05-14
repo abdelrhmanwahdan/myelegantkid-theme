@@ -75,15 +75,24 @@
         window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
     </script>
     
+    <title>{% block title %}{{ store.name }}{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}{{ store.description }}{% endblock %}">
+    <meta property="og:site_name" content="{{ store.name }}">
+    <meta property="og:title" content="{% block og_title %}{{ store.name }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ store.description }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ store.logo }}{% endblock %}">
+    <meta property="og:url" content="{{ store.url }}">
+    <meta name="twitter:card" content="summary_large_image">
+
     {% hook 'head:start' %}
     {% hook head %}
     {% block styles %}{% endblock %}
 
-    {# MEK Brand Fonts — preconnect for speed #}
+    {# MEK Brand Fonts — async non-blocking #}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Marcellus&family=Marhey:wght@400;500;600&family=Inter:wght@400;500&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Marcellus&family=Marhey:wght@400;500;600&family=Inter:wght@400;500&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Marcellus&family=Marhey:wght@400;500;600&family=Inter:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Marcellus&family=Marhey:wght@400;500;600&family=Inter:wght@400;500&display=swap"></noscript>
 
     <link rel="stylesheet" href="{{ 'app.css' | asset }}">
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
@@ -125,6 +134,9 @@
   {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
   ">
+<a href="#main-content" class="skip-to-content sr-only focus:not-sr-only focus:absolute focus:top-4 focus:start-4 focus:z-[9999] focus:bg-ink focus:text-bone focus:px-4 focus:py-2 focus:text-sm focus:rounded">
+    {{ theme.is_rtl ? 'تخطى إلى المحتوى' : 'Skip to content' }}
+</a>
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how
     <a href="https://www.enable-javascript.com/" rel="noreferrer"

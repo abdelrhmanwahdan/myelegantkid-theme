@@ -79,8 +79,10 @@
   }
 
   &__free-ribbon {
-    @apply absolute top-[11px] right-[-38px] w-32 bg-gold text-pearl text-[9px] font-bold
-           text-center py-1 rotate-45 shadow-sm;
+    @apply absolute top-[11px] w-32 bg-gold text-pearl text-[9px] font-bold
+           text-center py-1 shadow-sm
+           ltr:right-[-38px] ltr:rotate-45
+           rtl:left-[-38px] rtl:-rotate-45;
   }
 
   &__item-info {
