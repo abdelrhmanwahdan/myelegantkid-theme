@@ -1,49 +1,110 @@
+/* ─────────────────────────────────────────────────────────────────
+   MEK Atelier — Footer
+   ───────────────────────────────────────────────────────────────── */
 
-.store-footer {
-  @apply relative bg-darker text-white mt-8 sm:mt-16;
+.mek-footer {
+  @apply mt-24;
 
-  a{
-    @apply transition-opacity hover:opacity-75;
+  &--dark {
+    @apply bg-ink text-bone;
+
+    .mek-footer__col-title  { @apply text-pearl; }
+    .mek-footer__links a    { @apply text-mist hover:text-pearl; }
+    .mek-footer__tagline    { @apply text-mist; }
+    .mek-footer__copyright  { @apply text-mist; }
+    .mek-footer__bottom     { @apply border-t border-white/10; }
+    .mek-footer__newsletter { @apply border-t border-white/10; }
+    .mek-footer__newsletter-heading { @apply text-pearl; }
+    .mek-footer__newsletter-eyebrow { @apply text-gold; }
   }
 
-  &__inner{
-    @apply bg-dark py-8 lg:py-16 border-b border-dashed border-b-white/10;
-  }  
+  &--light {
+    @apply bg-bone text-ink border-t border-line;
 
-  h3{
-    @apply text-lg font-bold mb-3 lg:mb-5;
-  }
-
-  .social-link {
-    @apply border rounded-full w-8 h-8 justify-center flex items-center hover:opacity-75 transition duration-300 text-sm
-  }
-
-  .contact-social{
-    @apply mt-5 pt-5 border-t border-white/10;
-
-    ul {
-      @apply mb-0;
-    }
-  }
-
-  .footer-is-light & {
-    @apply bg-gray-50 text-gray-700;
-
-    .store-footer__inner {
-      @apply bg-gray-100 border-b-gray-200;
-    }
-
-    .social-link {
-      @apply border-gray-300;
-    }
-
-    .contact-social{
-      @apply border-gray-100;
-    }
+    .mek-footer__col-title  { @apply text-ink; }
+    .mek-footer__links a    { @apply text-ink-soft hover:text-ink; }
+    .mek-footer__tagline    { @apply text-ink-soft; }
+    .mek-footer__bottom     { @apply border-t border-line; }
+    .mek-footer__newsletter { @apply border-t border-line; }
+    .mek-footer__newsletter-heading { @apply text-ink; }
+    .mek-footer__newsletter-eyebrow { @apply text-gold-deep; }
   }
 }
 
+.mek-footer__inner {
+  @apply py-16 lg:py-20;
+}
 
-.copyright-text p{
-  @apply text-gray-700;
+.mek-footer__grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12;
+}
+
+.mek-footer__brand {
+  @apply sm:col-span-2 lg:col-span-1;
+
+  img {
+    @apply h-10 w-auto object-contain mb-4;
+    filter: brightness(0) invert(1);
+    .mek-footer--light & { filter: none; }
+  }
+}
+
+.mek-footer__tagline {
+  @apply text-sm leading-relaxed mb-5 max-w-xs;
+}
+
+.mek-footer__social {
+  @apply block mb-5;
+}
+
+.mek-footer__vat {
+  @apply flex items-end gap-3 mt-4;
+}
+
+.mek-footer__col-title {
+  @apply text-xs tracking-widest uppercase mb-5 font-medium;
+  font-family: var(--mek-font-logo);
+  letter-spacing: 0.16em;
+}
+
+.mek-footer__links {
+  @apply flex flex-col gap-3;
+
+  a { @apply text-sm transition-colors duration-150; }
+
+  salla-menu { @apply contents; }
+}
+
+/* Newsletter */
+.mek-footer__newsletter {
+  @apply mt-14 pt-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8;
+}
+
+.mek-footer__newsletter-eyebrow {
+  @apply text-xs tracking-[0.18em] uppercase mb-2;
+  font-family: var(--mek-font-logo);
+}
+
+.mek-footer__newsletter-heading {
+  @apply text-xl lg:text-2xl font-light max-w-sm leading-snug;
+  font-family: var(--mek-font-arabic);
+  [dir="ltr"] & { font-family: var(--mek-font-display); }
+}
+
+.mek-footer__newsletter-form {
+  @apply w-full lg:w-auto lg:min-w-[340px];
+}
+
+/* Bottom bar */
+.mek-footer__bottom {
+  @apply py-5;
+}
+
+.mek-footer__copyright {
+  @apply text-xs;
+}
+
+.mek-footer__payments,
+.mek-footer__apps {
+  @apply opacity-70;
 }

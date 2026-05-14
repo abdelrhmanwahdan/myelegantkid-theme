@@ -5,6 +5,36 @@
     },
     "appBanner": {
       "download_now": "download now"
+    },
+    "announcement": {
+      "label": "Store announcements",
+      "msg1": "Free shipping on orders over 299 SAR",
+      "msg2": "24-hour delivery within Hail",
+      "msg3": "Every piece hand-picked for your little one"
+    },
+    "nav": {
+      "start_label": "Primary navigation",
+      "end_label": "Secondary navigation",
+      "mobile_label": "Mobile navigation",
+      "shop": "Shop",
+      "fashion": "Fashion",
+      "accessories": "Accessories",
+      "newborn": "Newborn",
+      "gifts": "Gifts",
+      "story": "Our Story",
+      "search": "Search",
+      "wishlist": "Wishlist",
+      "open_menu": "Open menu",
+      "close_menu": "Close menu"
+    },
+    "footer": {
+      "tagline": "Curated fashion & accessories for newborns and children — Atelier Hail",
+      "explore_title": "Explore",
+      "help_title": "Help",
+      "wooden_boards": "Wooden Boards",
+      "contact": "Contact Us",
+      "newsletter_eyebrow": "Join the atelier",
+      "newsletter_heading": "Be the first to know about new arrivals and exclusive offers"
     }
   },
   "pages": {

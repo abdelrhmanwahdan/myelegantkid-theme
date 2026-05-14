@@ -1,0 +1,18 @@
+{% if theme.settings.get('announcement_bar_enabled', true) %}
+<div class="mek-announcement" role="region" aria-label="{{ trans('blocks.announcement.label') }}">
+  <div class="mek-announcement__track" aria-live="polite">
+    <span class="mek-announcement__msg mek-announcement__msg--1">
+      <i class="sicon-delivery-fast rtl:ml-2 ltr:mr-2" aria-hidden="true"></i>
+      {{ trans('blocks.announcement.msg1') }}
+    </span>
+    <span class="mek-announcement__msg mek-announcement__msg--2">
+      <i class="sicon-clock rtl:ml-2 ltr:mr-2" aria-hidden="true"></i>
+      {{ trans('blocks.announcement.msg2') }}
+    </span>
+    <span class="mek-announcement__msg mek-announcement__msg--3">
+      <i class="sicon-sparkle rtl:ml-2 ltr:mr-2" aria-hidden="true"></i>
+      {{ trans('blocks.announcement.msg3') }}
+    </span>
+  </div>
+</div>
+{% endif %}

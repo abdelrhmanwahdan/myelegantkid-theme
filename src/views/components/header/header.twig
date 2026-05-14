@@ -5,69 +5,164 @@
 | cart.items_count | int     |                                 |
 | cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
 #}
-{% set important_links = theme.settings.get('important_links') %}
-<header class="store-header">
-  {# Top Nav #}
-  <div class="top-navbar">
-    <div class="container flex justify-between">
-      <div class="flex-1 flex items-center gap-2">
-          {# Footer Menu #}
-          {% if important_links %}
-            <salla-menu source="footer" topnav></salla-menu>
+{% component 'header.announcement' %}
+
+<header id="mek-header" class="mek-header" x-data="{ mobileOpen: false }" @keydown.escape.window="mobileOpen = false">
+
+  {# ── Desktop Nav ─────────────────────────────────────────────── #}
+  <div class="mek-header__inner">
+    <div class="mek-header__grid">
+
+      {# START NAV (RTL: right side) #}
+      <nav class="mek-header__nav mek-header__nav--start" aria-label="{{ trans('blocks.nav.start_label') }}">
+        <a href="{{ link('products') }}" class="mek-nav-link {% if is_page('products') %}is-active{% endif %}">
+          {{ trans('blocks.nav.shop') }}
+        </a>
+        <a href="{{ link('categories', '27929359') }}" class="mek-nav-link {% if request.category_id == 27929359 %}is-active{% endif %}">
+          {{ trans('blocks.nav.fashion') }}
+        </a>
+        <a href="{{ link('categories', '2079472173') }}" class="mek-nav-link {% if request.category_id == 2079472173 %}is-active{% endif %}">
+          {{ trans('blocks.nav.accessories') }}
+        </a>
+      </nav>
+
+      {# CENTER: LOGO #}
+      <a href="{{ store.url }}" class="mek-header__logo" aria-label="{{ store.name }}">
+        <img fetchpriority="high"
+             loading="eager"
+             src="{{ store.logo|cdn(220) }}"
+             width="110" height="44"
+             alt="{{ store.name }} logo">
+        {% if is_page('index') %}
+          <h1 class="sr-only">{{ store.name }}</h1>
+        {% else %}
+          <span class="sr-only">{{ store.name }}</span>
+        {% endif %}
+        <span class="mek-header__tagline" aria-hidden="true">Atelier · Hail</span>
+      </a>
+
+      {# END NAV (RTL: left side) + UTILITIES #}
+      <div class="mek-header__end">
+        <nav class="mek-header__nav mek-header__nav--end" aria-label="{{ trans('blocks.nav.end_label') }}">
+          <a href="{{ link('categories', '27929359') }}" class="mek-nav-link">
+            {{ trans('blocks.nav.newborn') }}
+          </a>
+          <a href="{{ link('categories', '500203003') }}" class="mek-nav-link">
+            {{ trans('blocks.nav.gifts') }}
+          </a>
+          <a href="{{ link('pages', 'about') }}" class="mek-nav-link">
+            {{ trans('blocks.nav.story') }}
+          </a>
+        </nav>
+
+        {# Utility Icons #}
+        <div class="mek-header__utils">
+          {# Search #}
+          <button class="mek-util-btn" onclick="salla.event.dispatch('header::search::open')" aria-label="{{ trans('blocks.nav.search') }}">
+            <i class="sicon-search" aria-hidden="true"></i>
+          </button>
+
+          {# Language toggle #}
+          {% if store.settings.is_multilingual %}
+            <salla-localization-modal show-trigger class="mek-util-btn mek-util-btn--locale"></salla-localization-modal>
           {% endif %}
 
-          {# Language & Currency Component #}
-          <div class="header-buttons">
-              {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
-                  <salla-localization-modal show-trigger></salla-localization-modal>
-              {% endif %}
-          </div>
+          {# Wishlist #}
+          <a href="{{ link('wishlist') }}" class="mek-util-btn" aria-label="{{ trans('blocks.nav.wishlist') }}">
+            <i class="sicon-heart" aria-hidden="true"></i>
+          </a>
 
-          {# Scopes | Branches #}
-          {% if store.scope %}
-              <button class="btn--rounded-gray"
-                      onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})">
-                  <i class="sicon-location rtl:ml-1 ltr:mr-1"></i> {{ store.scope.name }}
-              </button>
-          {% endif %}
+          {# Cart #}
+          <salla-cart-summary class="mek-util-btn mek-util-btn--cart">
+            <i slot="icon" class="sicon-shopping-bag" aria-hidden="true"></i>
+          </salla-cart-summary>
+        </div>
 
-          {# Search bar #}
-          <div class="header-search flex-1">
-            <salla-search inline oval height="36"></salla-search>
-          </div>
+        {# Mobile hamburger #}
+        <button class="mek-burger lg:hidden"
+                @click="mobileOpen = true"
+                aria-label="{{ trans('blocks.nav.open_menu') }}"
+                aria-expanded="false"
+                :aria-expanded="mobileOpen.toString()">
+          <i class="sicon-menu" aria-hidden="true"></i>
+        </button>
       </div>
+    </div>{# /.mek-header__grid #}
+  </div>{# /.mek-header__inner #}
 
-      <salla-contacts is-header></salla-contacts>
+  {# ── Mobile Drawer ────────────────────────────────────────────── #}
+  {# Backdrop #}
+  <div class="mek-drawer-backdrop"
+       x-show="mobileOpen"
+       x-transition:enter="transition-opacity duration-300"
+       x-transition:enter-start="opacity-0"
+       x-transition:enter-end="opacity-100"
+       x-transition:leave="transition-opacity duration-200"
+       x-transition:leave-start="opacity-100"
+       x-transition:leave-end="opacity-0"
+       @click="mobileOpen = false"
+       aria-hidden="true"
+       style="display:none">
+  </div>
+
+  {# Drawer panel — slides from start edge #}
+  <div class="mek-drawer"
+       x-show="mobileOpen"
+       x-transition:enter="transition transform duration-300 ease-out"
+       x-transition:enter-start="rtl:-translate-x-full ltr:translate-x-full"
+       x-transition:enter-end="translate-x-0"
+       x-transition:leave="transition transform duration-200 ease-in"
+       x-transition:leave-start="translate-x-0"
+       x-transition:leave-end="rtl:-translate-x-full ltr:translate-x-full"
+       role="dialog"
+       aria-modal="true"
+       :aria-hidden="(!mobileOpen).toString()"
+       style="display:none">
+
+    {# Drawer header #}
+    <div class="mek-drawer__header">
+      <a href="{{ store.url }}" class="mek-drawer__logo" @click="mobileOpen = false">
+        <img src="{{ store.logo|cdn(160) }}" width="80" height="32" alt="{{ store.name }}">
+      </a>
+      <button class="mek-drawer__close"
+              @click="mobileOpen = false"
+              aria-label="{{ trans('blocks.nav.close_menu') }}">
+        <i class="sicon-close" aria-hidden="true"></i>
+      </button>
     </div>
-  </div>
 
-  {# Main Nav #}
-  <div id="mainnav" class="main-nav-container shadow-default bg-white flex items-center">
-      <div class="inner bg-inherit w-full">
-          <div class="container">
-              <div class="flex items-stretch justify-between relative">
-                  <div class="flex items-center">
-                      <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
-                        <i class="sicon-menu text-primary text-2xl"></i>
-                      </a>
-                      <a class="navbar-brand" href="{{ store.url }}">
-                          <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo|cdn(175) }}" alt="{{ store.name }} logo">
-                          {% if is_page('index') %}
-                            <h1 class="sr-only">{{ store.name }}</h1>
-                          {% else %}
-                            <h2 class="sr-only">{{ store.name }}</h2>
-                          {% endif %}
-                      </a>
-                      <custom-main-menu></custom-main-menu>
-                  </div>
-                  <div class="flex items-center justify-end my-2.5">
-                      <salla-user-menu avatar-only show-header show-trigger></salla-user-menu>
-                      <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4">
-                        <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
-                      </salla-cart-summary>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    {# Drawer navigation #}
+    <nav class="mek-drawer__nav" aria-label="{{ trans('blocks.nav.mobile_label') }}">
+      <a href="{{ link('products') }}" class="mek-drawer__link" @click="mobileOpen = false">
+        {{ trans('blocks.nav.shop') }}
+      </a>
+      <a href="{{ link('categories', '27929359') }}" class="mek-drawer__link" @click="mobileOpen = false">
+        {{ trans('blocks.nav.fashion') }}
+      </a>
+      <a href="{{ link('categories', '2079472173') }}" class="mek-drawer__link" @click="mobileOpen = false">
+        {{ trans('blocks.nav.accessories') }}
+      </a>
+      <a href="{{ link('categories', '27929359') }}" class="mek-drawer__link" @click="mobileOpen = false">
+        {{ trans('blocks.nav.newborn') }}
+      </a>
+      <a href="{{ link('categories', '500203003') }}" class="mek-drawer__link" @click="mobileOpen = false">
+        {{ trans('blocks.nav.gifts') }}
+      </a>
+      <a href="{{ link('pages', 'about') }}" class="mek-drawer__link" @click="mobileOpen = false">
+        {{ trans('blocks.nav.story') }}
+      </a>
+    </nav>
+
+    {# Drawer utilities #}
+    <div class="mek-drawer__utils">
+      {% if store.settings.is_multilingual %}
+        <salla-localization-modal show-trigger></salla-localization-modal>
+      {% endif %}
+      <a href="{{ link('wishlist') }}" class="mek-drawer__util-link" @click="mobileOpen = false">
+        <i class="sicon-heart rtl:ml-2 ltr:mr-2" aria-hidden="true"></i>
+        {{ trans('blocks.nav.wishlist') }}
+      </a>
+    </div>
+  </div>{# /.mek-drawer #}
+
 </header>
