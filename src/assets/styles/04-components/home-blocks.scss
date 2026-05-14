@@ -191,6 +191,43 @@
   [dir="rtl"] & { @apply text-start; }
 }
 
+.mek-intro__eyebrow {
+  @apply text-[10px] tracking-[0.35em] uppercase text-mist mb-4;
+}
+
+.mek-intro__cta {
+  @apply inline-flex items-center gap-2 mt-8 text-[13px] tracking-[0.15em] uppercase text-gold hover:text-gold-deep transition-colors no-underline;
+}
+
+/* ── Newsletter ─────────────────────────────────────────────────── */
+.mek-newsletter {
+  @apply bg-ink text-bone py-20 md:py-28 px-5 text-center;
+
+  &__inner {
+    @apply max-w-[560px] mx-auto;
+  }
+
+  &__eyebrow {
+    @apply text-[10px] tracking-[0.35em] uppercase text-mist mb-4;
+  }
+
+  &__heading {
+    @apply mb-8;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-family: var(--mek-font-display);
+  }
+
+  &__form {
+    salla-newsletter {
+      --salla-newsletter-input-background: rgba(255,255,255,0.08);
+      --salla-newsletter-input-border-color: rgba(255,255,255,0.2);
+      --salla-newsletter-input-color: #faf5ec;
+      --salla-newsletter-btn-background: #b89464;
+      --salla-newsletter-btn-color: #ffffff;
+    }
+  }
+}
+
 /* ── Category Tiles ─────────────────────────────────────────────── */
 .mek-cat-tiles {
   @apply max-w-[1500px] mx-auto px-5 md:px-10 mt-8 md:mt-16;

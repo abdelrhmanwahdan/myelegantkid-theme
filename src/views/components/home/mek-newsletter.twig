@@ -1,0 +1,16 @@
+{#
+| Newsletter section — "انضمي إلى البيت"
+| Uses Salla's <salla-newsletter> web component
+#}
+{% set eyebrow  = trans('blocks.footer.newsletter_eyebrow') %}
+{% set heading  = trans('blocks.footer.newsletter_heading') %}
+
+<section class="mek-newsletter">
+  <div class="mek-newsletter__inner">
+    <p class="mek-newsletter__eyebrow">{{ eyebrow }}</p>
+    <h2 class="mek-newsletter__heading">{{ heading }}</h2>
+    <div class="mek-newsletter__form">
+      <salla-newsletter></salla-newsletter>
+    </div>
+  </div>
+</section>

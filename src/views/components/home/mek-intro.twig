@@ -1,0 +1,23 @@
+{#
+| Intro section — "أناقة خالدة"
+| Editorial two-column text block
+#}
+{% set eyebrow   = component.eyebrow  ?? (theme.is_rtl ? 'فلسفتنا' : 'Our philosophy') %}
+{% set heading   = component.heading  ?? (theme.is_rtl ? 'أناقة خالدة' : 'Timeless elegance') %}
+{% set col1      = component.col1     ?? (theme.is_rtl ? 'نؤمن بأن كل تفصيلة في ملابس طفلك تعكس محبتك وذوقك — لهذا نختار كل قطعة بعناية فائقة من أرقى المصادر العالمية.' : 'We believe every detail in your child\'s clothing reflects your love and taste — sourced with exceptional care from the finest global origins.') %}
+{% set col2      = component.col2     ?? (theme.is_rtl ? 'من الاستقبال إلى الأعياد، كل مناسبة تستحق قطعة تُحكى قصتها لسنوات.' : 'From the first welcome to every celebration, each milestone deserves a piece that tells its story for years to come.') %}
+{% set cta_text  = component.cta_text ?? (theme.is_rtl ? 'قصتنا' : 'Our story') %}
+{% set cta_url   = component.cta_url  ?? link('pages', 'about') %}
+
+<section class="mek-intro js-mek-reveal">
+  <p class="mek-intro__eyebrow">{{ eyebrow }}</p>
+  <h2 class="mek-intro__heading">{{ heading }}</h2>
+  <div class="mek-intro__body">
+    <p>{{ col1 }}</p>
+    <p>{{ col2 }}</p>
+  </div>
+  <a href="{{ cta_url }}" class="mek-intro__cta">
+    {{ cta_text }}
+    <span aria-hidden="true">←</span>
+  </a>
+</section>
