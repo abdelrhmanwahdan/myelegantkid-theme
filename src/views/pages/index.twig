@@ -7,7 +7,20 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
-    <div style="background:red;color:white;padding:80px 40px;font-size:32px;text-align:center;">
-        MEK ALIVE — {{ store.name }}
-    </div>
+    {% component 'home.mek-announcement' %}
+    {% component 'home.mek-hero' %}
+    {% component 'home.mek-intro' %}
+    {% component 'home.mek-featured-categories' %}
+    {% component 'home.mek-bestsellers' %}
+    {% component 'home.mek-marquee' %}
+    {% component 'home.mek-collections' %}
+    {% component 'home.mek-editorial-banner' %}
+    {% component 'home.mek-curated' %}
+    {% component 'home.mek-story' %}
+    {% component 'home.mek-testimonials' %}
+    {% component 'home.mek-community' %}
+    {% component 'home.mek-newsletter' %}
+{% endblock %}
+{% block scripts %}
+    <script defer src="{{ 'home.js' | asset }}"></script>
 {% endblock %}
