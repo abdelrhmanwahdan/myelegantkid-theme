@@ -1,0 +1,25 @@
+{#
+| component.categories | Category[] | Merchant-selected categories (from Salla categories source)
+| categories           | Category[] | Global all-categories fallback
+#}
+{% set cats = component.categories is not empty ? component.categories : categories|slice(0,4) %}
+
+<section class="mek-cat-tiles">
+  <div class="mek-cat-tiles__grid">
+    {% for cat in cats|slice(0,4) %}
+      <a href="{{ cat.url }}"
+         class="mek-cat-tile js-mek-reveal"
+         style="--i:{{ loop.index0 }}">
+        {% if cat.image %}
+          <img class="mek-cat-tile__img"
+               src="{{ cat.image|cdn('w=480,h=600,fit=cover,f=webp,q=80') }}"
+               alt="{{ cat.name }}"
+               loading="{{ loop.first ? 'eager' : 'lazy' }}"
+               width="480" height="600">
+        {% endif %}
+        <div class="mek-cat-tile__overlay" aria-hidden="true"></div>
+        <span class="mek-cat-tile__name mek-display">{{ cat.name }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>

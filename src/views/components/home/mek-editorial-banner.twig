@@ -1,0 +1,41 @@
+{#
+| component.image    | string | Banner background image URL
+| component.heading  | string | Main headline
+| component.body     | string | Body text
+| component.cta_text | string | CTA label
+| component.cta_url  | string | CTA href
+#}
+{% set bg      = component.image %}
+{% set heading = component.heading ?? (theme.is_rtl ? 'لمسة من الفخامة' : 'A touch of luxury') %}
+{% set body    = component.body    ?? (theme.is_rtl ? 'أكثر من مجرد ملابس — كل قطعة تحكي قصة من الأناقة والجمال الخالد.' : 'More than just fashion — each piece tells a story of elegance and timeless beauty.') %}
+{% set cta     = component.cta_text ?? (theme.is_rtl ? 'اقرئي القصة' : 'Read our story') %}
+{% set ctaUrl  = component.cta_url  ?? link('pages', 'about') %}
+
+<section class="mek-editorial-banner">
+  <div class="mek-editorial-banner__wrap js-mek-reveal">
+    {% if bg %}
+      <img class="mek-editorial-banner__img"
+           src="{{ bg|cdn('w=1400,h=667,fit=cover,f=webp,q=80') }}"
+           srcset="{{ bg|cdn('w=800,h=380,fit=cover,f=webp,q=75') }} 800w,
+                   {{ bg|cdn('w=1400,h=667,fit=cover,f=webp,q=80') }} 1400w"
+           sizes="100vw"
+           alt=""
+           loading="lazy">
+    {% endif %}
+
+    <div class="mek-grain-overlay" aria-hidden="true"></div>
+    <div class="mek-editorial-banner__veil" aria-hidden="true"></div>
+
+    <div class="mek-editorial-banner__content">
+      <h3 class="mek-display mek-editorial-banner__heading js-mek-fadeup">
+        {{ heading|raw }}
+      </h3>
+      <p class="mek-editorial-banner__body js-mek-fadeup" style="--delay:.15s">
+        {{ body }}
+      </p>
+      <a href="{{ ctaUrl }}" class="mek-hero__link js-mek-fadeup" style="--delay:.3s">
+        {{ cta }} →
+      </a>
+    </div>
+  </div>
+</section>

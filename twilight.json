@@ -277,6 +277,58 @@
             ]
         },
         {
+            "key": "mek-marquee-007",
+            "title": { "ar": "شريط العلامة", "en": "Brand Marquee" },
+            "icon": "sicon-text",
+            "path": "home.mek-marquee",
+            "fields": []
+        },
+        {
+            "key": "mek-collections-008",
+            "title": { "ar": "التشكيلات المرقّمة", "en": "Collections List" },
+            "icon": "sicon-list-add",
+            "path": "home.mek-collections",
+            "fields": [
+                {
+                    "type": "string", "icon": "sicon-format-text-alt",
+                    "id": "title", "label": { "ar": "العنوان", "en": "Title" },
+                    "multilanguage": true, "format": "text", "required": false,
+                    "value": { "ar": "التشكيلات", "en": "The Collections" }
+                }
+            ]
+        },
+        {
+            "key": "mek-story-009",
+            "title": { "ar": "قصة الأتيليه", "en": "Brand Story" },
+            "icon": "sicon-camera",
+            "path": "home.mek-story",
+            "fields": [
+                {
+                    "type": "string", "icon": "sicon-format-text-alt",
+                    "id": "heading", "label": { "ar": "العنوان", "en": "Heading" },
+                    "multilanguage": true, "format": "text", "required": false,
+                    "value": { "ar": "من فكرة إلى أناقة خالدة", "en": "From an idea to timeless elegance" }
+                }
+            ]
+        },
+        {
+            "key": "mek-community-010",
+            "title": { "ar": "شبكة المجتمع", "en": "Community Grid" },
+            "icon": "sicon-image",
+            "path": "home.mek-community",
+            "fields": [
+                {
+                    "id": "images", "type": "collection", "format": "collection",
+                    "label": { "ar": "الصور", "en": "Images" },
+                    "item_label": "صورة", "required": false, "minLength": 1, "maxLength": 6,
+                    "value": [],
+                    "fields": [
+                        { "id": "images.image", "type": "string", "format": "image", "label": "صورة", "icon": "sicon-image", "value": null, "required": true }
+                    ]
+                }
+            ]
+        },
+        {
             "key": "mek-testimonials-006",
             "title": { "ar": "آراء العملاء", "en": "Testimonials" },
             "icon": "sicon-chat-bubbles",

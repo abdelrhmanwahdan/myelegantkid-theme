@@ -1,0 +1,29 @@
+{#
+| component.images[].image | string | Community photo URLs (up to 6)
+#}
+{% set images = component.images ?? [] %}
+
+{% if images is not empty %}
+<section class="mek-community">
+  <div class="container">
+    <div class="mek-section-header js-mek-reveal">
+      <p class="mek-eyebrow">@myelegantkid</p>
+      <h2 class="mek-display mek-section-title">
+        {{ theme.is_rtl ? 'استوحي <em>من مجتمعنا</em>' : 'Inspired by <em>our community</em>' }}
+      </h2>
+    </div>
+  </div>
+
+  <div class="mek-community__grid">
+    {% for img in images|slice(0,6) %}
+      <a href="#" class="mek-community__cell js-mek-reveal" style="--i:{{ loop.index0 }}">
+        <img src="{{ img.image|cdn('w=360,h=360,fit=cover,f=webp,q=80') }}"
+             alt=""
+             loading="lazy"
+             width="360" height="360">
+        <div class="mek-community__hover" aria-hidden="true"></div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

@@ -1,0 +1,37 @@
+{#
+| component.title        | string     | Section heading
+| component.items[]      | object[]   | Review objects
+| component.items[].name | string     | Reviewer name
+| component.items[].stars| int        | Rating 1–5
+| component.items[].text | string     | Review text
+#}
+{% set title = component.title ?? (theme.is_rtl ? 'يقولون عنّا' : 'What They Say') %}
+{% set reviews = component.items %}
+
+{% if reviews is not empty %}
+<section class="mek-testimonials">
+  <div class="container">
+    <div class="mek-section-header js-mek-reveal">
+      <p class="mek-eyebrow">{{ theme.is_rtl ? 'كلمات عميلاتنا' : 'In their words' }}</p>
+      <h2 class="mek-display mek-section-title">{{ title }}</h2>
+    </div>
+
+    <div class="mek-testimonials__grid">
+      {% for review in reviews %}
+        <figure class="mek-testimonial js-mek-reveal" style="--i:{{ loop.index0 }}">
+          <span class="mek-testimonial__quote mek-display-italic" aria-hidden="true">"</span>
+          <blockquote class="mek-display mek-testimonial__text">{{ review.text }}</blockquote>
+          <figcaption class="mek-eyebrow mek-testimonial__name">— {{ review.name }}</figcaption>
+          {% if review.stars %}
+            <div class="mek-testimonial__stars" aria-label="{{ review.stars }} stars">
+              {% for i in 1..5 %}
+                <span class="{{ i <= review.stars ? 'text-gold' : 'text-line' }}" aria-hidden="true">★</span>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

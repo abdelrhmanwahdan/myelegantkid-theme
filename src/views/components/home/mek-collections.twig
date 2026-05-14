@@ -1,0 +1,65 @@
+{#
+| categories  | Category[] | Salla global categories variable
+| component.title | string | Section heading
+#}
+{% set heading = component.title ?? (theme.is_rtl ? 'التشكيلات' : 'The Collections') %}
+
+<section class="mek-collections"
+         x-data="{ active: '{{ categories[0].id ?? '' }}' }"
+         @mouseenter.outside="active = '{{ categories[0].id ?? '' }}'">
+  <div class="container">
+
+    <div class="mek-collections__header js-mek-reveal">
+      <h2 class="mek-display mek-collections__title">{{ heading }}</h2>
+      <span class="mek-eyebrow">
+        {{ categories|length }} {{ theme.is_rtl ? 'تشكيلة' : 'collections' }}
+      </span>
+    </div>
+
+    <div class="mek-collections__body">
+
+      {# List #}
+      <ul class="mek-collections__list" role="list">
+        {% for cat in categories %}
+          <li class="mek-collections__item"
+              @mouseenter="active = '{{ cat.id }}'"
+              style="--i:{{ loop.index0 }}">
+            <a href="{{ cat.url }}" class="mek-collections__link js-mek-reveal">
+              <div class="mek-collections__link-inner">
+                <span class="mek-collections__num" dir="ltr">{{ "%02d"|format(loop.index) }}</span>
+                <span class="mek-display mek-collections__name"
+                      :class="active === '{{ cat.id }}' ? 'is-active' : (active ? 'is-dim' : '')">
+                  {{ cat.name }}
+                </span>
+              </div>
+              <span class="mek-collections__cta"
+                    x-show="active === '{{ cat.id }}'"
+                    x-transition:enter="transition-all duration-200"
+                    x-transition:enter-start="opacity-0 translate-x-2"
+                    x-transition:enter-end="opacity-100 translate-x-0">
+                {{ theme.is_rtl ? 'تصفّحي' : 'Explore' }} →
+              </span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      {# Sticky image panel (desktop) #}
+      <div class="mek-collections__panel" aria-hidden="true">
+        {% for cat in categories %}
+          <div class="mek-collections__panel-img"
+               :class="active === '{{ cat.id }}' ? 'is-visible' : ''">
+            {% if cat.image %}
+              <img src="{{ cat.image|cdn('w=600,h=800,fit=cover,f=webp,q=80') }}"
+                   alt="{{ cat.name }}"
+                   loading="lazy"
+                   width="600" height="800">
+            {% endif %}
+            <div class="mek-collections__panel-name mek-display">{{ cat.name }}</div>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</section>

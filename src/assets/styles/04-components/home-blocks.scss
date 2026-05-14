@@ -1,400 +1,574 @@
-/*
-  Block Title
-*/
-.s-block{
-  &__title{
-    @apply center-between mb-4 md:mb-8;
+/* ─────────────────────────────────────────────────────────────────
+   MEK Atelier — Homepage Section Styles
+   ───────────────────────────────────────────────────────────────── */
 
-    .right-side{
-      @apply rtl:pl-8 ltr:pr-8;
-    }
+/* ── Shared utilities ───────────────────────────────────────────── */
 
-    h2{ 
-      @apply text-lg font-bold relative leading-[1.2];
-    }
+/* Grain texture overlay */
+.mek-grain-overlay {
+  @apply absolute inset-0 pointer-events-none mix-blend-overlay opacity-[0.035];
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
 
-    p{
-      @apply text-sm opacity-60 mt-2 line-clamp-1 sm:line-clamp-2 rtl:md:pl-16 ltr:md:pr-16;
-    }
+/* Section header */
+.mek-section-header {
+  @apply text-center mb-12 md:mb-14;
+}
 
-    &-nav{
-      @apply hidden sm:flex ltr:flex-row-reverse rtl:space-x-reverse space-x-2.5 rtl:mr-6 ltr:ml-6;
-    }
-  }
+.mek-eyebrow {
+  @apply text-[10.5px] tracking-[0.38em] uppercase text-mist font-light mb-4;
+  font-family: var(--mek-font-logo);
 
-  &__display-all{
-    @apply inline-flex items-center gap-2 text-sm font-bold opacity-80 hover:opacity-100;
+  &--light { @apply text-mist/80; }
+}
 
-    i{
-      @apply ltr:rotate-180 inline-block;
-    }
+.mek-section-title {
+  @apply text-ink;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+
+  em {
+    @apply not-italic;
+    font-family: var(--mek-font-display);
+    font-style: italic !important;
   }
 }
 
-/*
-  Main slider
-*/
-.s-block--hero-slider{
-  .swiper-slide{
-    @apply h-80 sm:h-96 lg:h-116 xl:h-132 relative bg-gray-800;
+.mek-section-viewall {
+  @apply text-center mt-14;
+}
 
-    .swiper-lazy{
-      &:after{
-        @apply content-[''] absolute transition top-0 bg-black/60 w-full h-full;
-      }
-    }
+.mek-link-underline {
+  @apply inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase font-light text-ink border-b border-ink pb-1 hover:text-gold-deep hover:border-gold-deep transition-colors;
+}
 
-	.overlay-bg{
-		&:after{
-		  @apply content-[''] absolute top-0 bg-black/60 w-full h-full;
-		}
-	  }
+/* Shared reveal animations (triggered by IntersectionObserver in home.js) */
+.js-mek-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  transition-delay: calc(var(--i, 0) * 0.08s);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Banner Block */
-.banner {
-  @media screen and (min-width: 768px) {
-    &:hover {
-      .banner__title {
-        animation: toTopFromBottom 0.9s;
-      }
+.js-mek-fadeup {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1) var(--delay, 0s),
+              transform 0.8s cubic-bezier(0.16,1,0.3,1) var(--delay, 0s);
 
-      .banner__description {
-        animation: delayKeyframe 0.3s, toTopFromBottom 0.9s 0.3s;
-      }
-    }
-  }
-
-  &--fixed{
-    img{
-      @apply w-full object-cover rounded-md border-none block bg-gray-100;
-    }
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Square Banner Block */
-.banner-entry{
-  @apply h-[200px] bg-gray-100 text-white text-center p-3 xs:p-4 rounded-md overflow-hidden relative bg-cover bg-no-repeat bg-center;
+/* Shared button styles */
+.mek-btn {
+  @apply inline-block text-[10.5px] tracking-[0.3em] uppercase font-medium transition-colors;
 
-  article{
-    @apply flex flex-col items-center justify-center h-full p-2.5 
+  &--light {
+    @apply bg-bone text-ink px-7 py-3.5 hover:bg-pearl;
   }
-  
-  &.square-photos h3{
-    @apply h-full px-3;
+  &--dark {
+    @apply bg-ink text-bone px-7 py-3.5 hover:bg-ink-soft;
   }
-
-  h3{
-    @apply flex flex-col justify-center xs:px-1;
-   
-    &.text-with-border{
-      @apply xs:border border-dashed border-gray-200 rounded-md;
-
-      span{
-        @apply line-clamp-2;
-      }
-    }
+  &--ghost {
+    @apply border border-ink text-ink px-7 py-3.5 hover:bg-ink hover:text-bone;
   }
-
-  p{
-    @apply line-clamp-2 opacity-80;
-  }
-
-  h3,p{
-    @apply lg:opacity-0  transition-all duration-300 relative z-1 lg:translate-y-6;
-  }
-  
-  &:hover{
-    h3{
-      @apply opacity-100 translate-y-0;
-    }
-
-    p{
-      @apply opacity-80 translate-y-0;
-    }
-  }
-
-  .two-row &{
-    &:first-child{
-      @apply md:h-full sm:col-span-1 sm:row-span-2 p-5;
-
-      > a{
-        @apply opacity-100;
-      }
-
-      h3{
-        @apply text-2xl leading-12;
-      }
-    }
+  &--ghost-light {
+    @apply border border-mist/40 text-bone px-8 py-3.5 hover:border-mist transition-colors;
   }
 }
 
-.has-overlay{ 
-  &:after{
-    @apply content-[''] h-full w-full bg-black/60 absolute top-0 left-0 transition-colors duration-300;
+.mek-display {
+  font-family: var(--mek-font-display);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.1;
+
+  [dir="rtl"] & {
+    font-family: var(--mek-font-arabic);
+    font-weight: 500;
+    letter-spacing: 0;
   }
 
-  &.with-hover{
-    &:after{
-      transition: opacity .3s;
-      opacity: 0;
-    }
-    &:hover{
-      &:after{
-      opacity: 1;
-    }
-    }
-  }
-
-  &:hover:after{
-    @apply bg-black/70
+  em {
+    font-style: italic;
+    [dir="rtl"] & { font-style: normal; }
   }
 }
 
+.mek-display-italic {
+  font-family: var(--mek-font-display);
+  font-style: italic;
+  [dir="rtl"] & { font-family: var(--mek-font-arabic); font-style: normal; }
+}
 
-/* Full banner block */
-.full-banner-entry {
-  @apply row-span-2 h-80 md:h-96 lg:h-116 xl:h-132 bg-stone-200 transition-opacity hover:opacity-95 bg-center bg-cover text-white text-center p-5 overflow-hidden relative bg-fixed;
+/* ── Hero ───────────────────────────────────────────────────────── */
+.mek-hero {
+  @apply bg-cream;
+}
 
-  background-attachment: initial;
+.mek-hero__wrap {
+  @apply max-w-[1500px] mx-auto px-5 md:px-10 pt-6 md:pt-10 pb-12 md:pb-16;
+}
 
-  &::after,
-  &::before {
-    height: 100%;
-    width: 100%;
-    top: 0;
-    right: -93%;
-    content: "";
-    background: var(--color-primary);
-    position: absolute;
-    transition: all 0.3s ease-in-out;
-    transform: rotate(220deg) translateY(-50%) translateX(33%);
-    opacity: 0.25;
+.mek-hero__card {
+  @apply relative overflow-hidden bg-sand;
+  border-radius: 14px;
+  aspect-ratio: 16/9;
+
+  @screen md { border-radius: 22px; }
+}
+
+.mek-hero__img {
+  @apply absolute inset-0 w-full h-full object-cover scale-[1.04] transition-transform duration-[1800ms] ease-out;
+  .js-mek-reveal.is-visible & { transform: scale(1); }
+}
+
+.mek-hero__veil {
+  @apply absolute inset-0 pointer-events-none;
+
+  &--rtl {
+    background: linear-gradient(to left, rgba(42,32,26,0.62) 0%, rgba(42,32,26,0.28) 42%, transparent 72%);
   }
-
-  &::before {
-    background: #fff;
-    right: auto;
-    transform: rotate(220deg) translateY(-40%) translateX(0);
-
-    [dir="ltr"] & {
-      left: -52%;
-    }
-  }
-
-  @media (max-width: 1330px) {
-    &::after {
-      top: -50%;
-    }
-  }
-
-  @media (max-width: 480px) {
-    &::before {
-      top: 20%;
-    }
-
-    &::after {
-      top: -80%;
-    }
+  &--ltr {
+    background: linear-gradient(to right, rgba(42,32,26,0.62) 0%, rgba(42,32,26,0.28) 42%, transparent 72%);
   }
 }
 
-/*
-  Tabs Block
-*/
-.tabs-wrapper{
-  .tabs__item{
-    @apply hidden transition-all duration-300;
+.mek-hero__bottom-fade {
+  @apply absolute bottom-0 inset-x-0 h-1/3 pointer-events-none;
+  background: linear-gradient(to top, rgba(42,32,26,0.30) 0%, transparent 100%);
+}
 
-    &.is-active{
-      @apply block;
-    }
+.mek-hero__content {
+  @apply absolute inset-x-0 bottom-0 p-6 md:p-12 lg:p-16;
+  max-width: 640px;
+}
+
+.mek-hero__eyebrow {
+  @apply text-[10px] md:text-[11px] tracking-[0.4em] uppercase text-bone/80 mb-4 font-light;
+  font-family: var(--mek-font-logo);
+}
+
+.mek-hero__heading {
+  @apply text-bone;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+}
+
+.mek-hero__ctas {
+  @apply mt-7 flex items-center gap-5;
+}
+
+.mek-hero__link {
+  @apply text-bone text-[10.5px] tracking-[0.3em] uppercase font-light relative;
+
+  &::after {
+    content: '';
+    @apply absolute bottom-0 inset-x-0 h-px bg-bone/60 scale-x-0 origin-[inline-end] transition-transform duration-300;
+  }
+  &:hover::after { @apply scale-x-100 origin-[inline-start]; }
+}
+
+/* Intro text under hero */
+.mek-intro {
+  @apply mt-14 md:mt-20 max-w-[1100px] mx-auto px-2 text-center;
+}
+
+.mek-intro__heading {
+  @apply text-ink;
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
+}
+
+.mek-intro__body {
+  @apply mt-7 grid md:grid-cols-2 gap-6 md:gap-16 text-[14px] text-ink-soft leading-loose font-light max-w-[820px] mx-auto text-start;
+  [dir="rtl"] & { @apply text-start; }
+}
+
+/* ── Category Tiles ─────────────────────────────────────────────── */
+.mek-cat-tiles {
+  @apply max-w-[1500px] mx-auto px-5 md:px-10 mt-8 md:mt-16;
+}
+
+.mek-cat-tiles__grid {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5;
+}
+
+.mek-cat-tile {
+  @apply relative overflow-hidden bg-sand block;
+  border-radius: 14px;
+  aspect-ratio: 4/5;
+  @screen md { border-radius: 22px; }
+
+  &__img {
+    @apply absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out;
+  }
+  &:hover &__img { transform: scale(1.05); }
+
+  &__overlay {
+    @apply absolute inset-0;
+    background: linear-gradient(to top, rgba(42,32,26,0.55) 0%, rgba(42,32,26,0.05) 45%, transparent 70%);
+  }
+
+  &__name {
+    @apply absolute inset-x-0 bottom-0 flex items-end justify-center pb-8 md:pb-10 text-bone drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)];
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   }
 }
 
-.s-block--tabs-produtcs{
-  .tabs{
-    @apply text-center pb-6 sm:pb-10 px-5 -mx-2.5 sm:-mx-5 lg:mx-0 rtl:space-x-reverse space-x-1 md:space-x-4 whitespace-nowrap overflow-x-auto;
+/* ── Products grid ──────────────────────────────────────────────── */
+.mek-products-section {
+  @apply mt-20 md:mt-28;
+}
+
+.mek-products-grid {
+  @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-12;
+
+  &--4 { @apply lg:grid-cols-4; }
+}
+
+/* Product card */
+.mek-product-card {
+  @apply flex flex-col;
+
+  &__img-wrap {
+    @apply relative overflow-hidden bg-sand rounded-[14px] md:rounded-[18px] block;
+    aspect-ratio: 4/5;
   }
 
-  .tab-trigger{
-    @apply text-gray-800;
-    &.is-active button{
-      @apply text-primary-reverse bg-primary-dark border-primary-dark;
-    }
+  &__img {
+    @apply w-full h-full object-cover transition-transform duration-700 ease-out;
+    .mek-product-card:hover &  { transform: scale(1.04); }
+  }
+
+  &__badge {
+    @apply absolute top-3 start-3 text-[9px] tracking-[0.2em] uppercase px-2 py-1;
+
+    &--sale { @apply bg-gold text-pearl; }
+    &--new  { @apply bg-ink text-bone; }
+  }
+
+  &__wishlist {
+    @apply absolute top-2 end-2;
+  }
+
+  &__info {
+    @apply mt-4 flex flex-col gap-2;
+  }
+
+  &__name {
+    @apply text-sm text-ink leading-snug line-clamp-2 hover:text-gold-deep transition-colors;
+  }
+
+  &__pricing {
+    @apply flex items-center gap-2;
+  }
+
+  &__price {
+    @apply text-sm font-medium text-ink;
+
+    &--sale    { @apply text-gold-deep; }
+    &--original { @apply text-mist line-through text-xs; }
+  }
+
+  &__atc {
+    @apply mt-1;
   }
 }
 
-.s-block--special-products{
-  .tabs{
-    @apply mb-4 sm:mb-0 rtl:space-x-reverse space-x-2 md:space-x-8 whitespace-nowrap overflow-x-auto;
+/* ── Marquee ────────────────────────────────────────────────────── */
+.mek-marquee {
+  @apply relative overflow-hidden py-5 my-16 md:my-24 border-y border-sand;
 
-    &__item{
-      @apply flex-1 gap-2.5 sm:gap-8;
+  &__track {
+    @apply flex w-max items-center gap-8;
 
-      &.is-active{
-        display: grid;
-      }
-    }
+    &--fwd { animation: mek-scroll-fwd 35s linear infinite; }
+    &--rev { animation: mek-scroll-rev 45s linear infinite; @apply mt-3 opacity-40; }
   }
 
-  .tab-trigger{
-    @apply text-gray-800 font-bold leading-7;
+  &__word {
+    @apply whitespace-nowrap text-[11px] tracking-[0.45em] uppercase text-ink;
+    font-family: var(--mek-font-logo);
 
-    &.is-active button{
-      @apply text-primary-dark border-primary-dark;
-    }
+    &--sep { @apply text-mist; }
   }
 }
 
-.s-block--tabs-produtcs,
-.s-block--special-products {
-  &:not(.tabs-initialized) {
-    .tabs-wrapper > div:not(:first-child) {
-      display: none;
-    }
+@keyframes mek-scroll-fwd {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes mek-scroll-rev {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* ── Collections List ───────────────────────────────────────────── */
+.mek-collections {
+  @apply mt-28 md:mt-40 overflow-hidden;
+}
+
+.mek-collections__header {
+  @apply flex items-baseline justify-between pb-5 border-b border-sand mb-0;
+}
+
+.mek-collections__title {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  @apply text-ink;
+}
+
+.mek-collections__body {
+  @apply relative flex flex-col md:flex-row;
+}
+
+.mek-collections__list {
+  @apply md:w-[52%] py-6 md:py-8 md:pe-16;
+}
+
+.mek-collections__item {
+  @apply border-b border-sand last:border-0;
+}
+
+.mek-collections__link {
+  @apply flex items-center justify-between py-5 cursor-pointer;
+
+  &-inner {
+    @apply flex items-center gap-6;
   }
 }
 
-/* feature products*/
-.s-block--features-products {
-  &.two-cols {
-    .inner {
-      display: grid;
-      @apply lg:grid-cols-2 gap-5;
-    }
+.mek-collections__num {
+  @apply text-[10px] tracking-[0.2em] text-mist font-light w-6 flex-shrink-0 transition-opacity;
+}
+
+.mek-collections__name {
+  @apply text-ink leading-none transition-all duration-300;
+  font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+
+  &.is-dim   { @apply opacity-[0.18]; }
+  &.is-active { transform: translateX(var(--shift, 10px)); }
+  [dir="rtl"] & { --shift: -10px; }
+}
+
+.mek-collections__cta {
+  @apply text-[10px] tracking-[0.2em] uppercase text-mist font-light flex items-center gap-2;
+}
+
+/* Sticky image panel */
+.mek-collections__panel {
+  @apply hidden md:block md:w-[48%] relative;
+}
+
+.mek-collections__panel-img {
+  @apply absolute inset-0 overflow-hidden rounded-[22px] opacity-0 transition-opacity duration-300;
+
+  &.is-visible { @apply opacity-100; }
+
+  img { @apply w-full h-full object-cover; }
+}
+
+.mek-collections__panel-name {
+  @apply absolute bottom-6 start-6 text-bone text-[22px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)];
+}
+
+/* ── Editorial Banner ───────────────────────────────────────────── */
+.mek-editorial-banner {
+  @apply mt-20 md:mt-28;
+}
+
+.mek-editorial-banner__wrap {
+  @apply max-w-[1500px] mx-auto px-5 md:px-10 relative overflow-hidden bg-sand;
+  border-radius: 14px;
+  aspect-ratio: 21/10;
+  @screen md { border-radius: 22px; }
+}
+
+.mek-editorial-banner__img {
+  @apply absolute inset-0 w-full h-full object-cover scale-[1.08] transition-transform duration-[1600ms] ease-out;
+  .mek-editorial-banner__wrap.is-visible & { transform: scale(1); }
+}
+
+.mek-editorial-banner__veil {
+  @apply absolute inset-0 pointer-events-none;
+  background: linear-gradient(to top, rgba(42,32,26,0.60) 0%, rgba(42,32,26,0.20) 40%, transparent 65%);
+}
+
+.mek-editorial-banner__content {
+  @apply absolute inset-x-0 bottom-0 p-8 md:p-14;
+  max-width: 440px;
+}
+
+.mek-editorial-banner__heading {
+  @apply text-bone;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+}
+
+.mek-editorial-banner__body {
+  @apply mt-4 text-[13px] text-bone/80 leading-relaxed font-light;
+}
+
+/* ── Story Timeline ─────────────────────────────────────────────── */
+.mek-story {
+  @apply mt-28 md:mt-36 bg-ink relative overflow-hidden py-20 md:py-28;
+}
+
+.mek-story__header {
+  @apply flex items-baseline justify-between border-t border-ink-soft pt-6 pb-14 md:pb-20;
+}
+
+.mek-story__brand-tag {
+  @apply text-[12px] text-ink-soft;
+}
+
+.mek-story__heading {
+  @apply text-bone max-w-[16ch];
+  font-size: clamp(2.2rem, 5vw, 4rem);
+
+  em { @apply text-mist; }
+}
+
+/* Polaroid fan */
+.mek-story__fan {
+  @apply relative mx-auto flex items-end justify-center mt-16 md:mt-20;
+  height: clamp(240px, 38vw, 360px);
+}
+
+.mek-polaroid {
+  @apply absolute select-none cursor-pointer;
+  transform-origin: bottom center;
+  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s;
+
+  &__inner {
+    @apply bg-bone p-2 pb-10 shadow-mobile;
+    width: 236px;
+  }
+
+  &__img {
+    @apply w-full object-cover bg-sand;
+    height: 242px;
+  }
+
+  &__tag {
+    @apply mt-1 text-center text-[11px] tracking-[0.15em] text-ink-soft;
+  }
+
+  &__pin {
+    @apply absolute -top-2 left-1/2 h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-gold shadow-md;
   }
 }
 
-/* slider with bg block */
-.s-block--slider-with-bg{
-  @apply bg-gray-100 pb-8 sm:pb-16 mt-8 sm:mt-16 first-of-type:mt-0;
+/* Nav */
+.mek-story__nav {
+  @apply mt-12 flex items-center justify-center gap-5;
+}
 
-  .slider-bg{
-    @apply h-96 sm:h-116 transition-opacity bg-center bg-cover text-white relative;
+.mek-story__arrow {
+  @apply flex h-11 w-11 items-center justify-center rounded-full border border-ink-soft text-mist hover:border-mist hover:text-bone transition-all disabled:opacity-25 disabled:cursor-not-allowed bg-transparent;
+}
 
-    &:before{
-      content: '';
-      @apply h-full w-full bg-black opacity-60 absolute top-0 left-0;
-    }
+.mek-story__dots {
+  @apply flex items-center gap-2;
+}
+
+.mek-story__dot {
+  @apply block rounded-full h-2 w-2 bg-ink-soft hover:bg-mist/50 transition-all duration-300 border-none cursor-pointer;
+
+  &.is-active { @apply h-2 w-6 bg-mist; }
+}
+
+/* Active slide text */
+.mek-story__text-area {
+  @apply mt-12 max-w-[580px] mx-auto text-center relative;
+}
+
+.mek-story__slide {
+  @apply opacity-0 absolute inset-x-0 top-0 transition-opacity duration-300 pointer-events-none;
+
+  &.is-active { @apply opacity-100 relative pointer-events-auto; }
+}
+
+.mek-story__tag-row {
+  @apply flex items-center justify-center gap-3 mb-4;
+}
+
+.mek-story__rule {
+  @apply h-px w-8 bg-mist/40;
+}
+
+.mek-story__counter {
+  @apply text-[10px] text-ink-soft;
+}
+
+.mek-story__slide-title {
+  @apply text-bone;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.mek-story__slide-body {
+  @apply mt-4 text-[13px] text-mist leading-relaxed font-light max-w-[44ch] mx-auto;
+}
+
+.mek-story__cta {
+  @apply mt-12 text-center;
+}
+
+/* ── Testimonials ───────────────────────────────────────────────── */
+.mek-testimonials {
+  @apply mt-24 md:mt-32 py-16 md:py-24 bg-bone;
+}
+
+.mek-testimonials__grid {
+  @apply grid md:grid-cols-3 gap-10 md:gap-14 mt-12;
+}
+
+.mek-testimonial {
+  @apply flex flex-col gap-5;
+
+  &__quote {
+    @apply text-[44px] text-mist leading-none;
+    font-family: var(--mek-font-display);
   }
 
-  .s-slider-block{
-    &__title-right{
-      @apply hidden;
-    }
+  &__text {
+    @apply text-[18px] md:text-[20px] leading-relaxed text-ink flex-1;
+  }
 
-    &__title-left{
-      @apply w-full flex justify-between;
-    }
+  &__name {
+    @apply text-mist;
+  }
 
-    &__display-all{
-      @apply block btn btn--outline light btn--rounded-full;
-      @apply grow-0 bg-transparent text-white #{!important};
-    }
+  &__stars {
+    @apply flex gap-0.5 text-sm;
   }
 }
 
-/*
-  Main Links Block
-*/
-.slide--cat-entry {
-  @apply bg-white rounded-md h-36 p-3 text-center flex flex-col items-center justify-center transition duration-500 hover:shadow-default hover:text-gray-500 border border-gray-100;
+/* ── Community Grid ─────────────────────────────────────────────── */
+.mek-community {
+  @apply mt-24 md:mt-32;
 
-  i {
-    @apply inline-block text-primary text-icon-lg mb-4;
-  }
-
-  h2 {
-    @apply font-bold text-sm;
-  }
+  .mek-section-header { @apply max-w-[1500px] mx-auto px-5 md:px-10; }
 }
 
-/*
-  offers slider
-*/
-.slide--offer-entry {
-  @apply bg-white rounded-md h-36 text-center flex flex-col items-center justify-between text-gray-600 transition duration-500 hover:shadow-default border border-gray-200;
+.mek-community__grid {
+  @apply grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3 mt-10;
 }
 
+.mek-community__cell {
+  @apply relative aspect-square overflow-hidden rounded-md md:rounded-lg bg-sand block;
 
-.s-block {
-  @apply mt-8 sm:mt-16;
-
-  &--full-bg{
-    + footer,
-    + .s-block--full-bg,
-    &:first-of-type{
-      @apply mt-0;
-    }
-
-    + .merge-with-top-component{
-      @apply -mt-28 md:-mt-32 z-1;
-
-      .s-slider-block__title {
-        color: #fff !important;
-        @apply text-center sm:text-start sm:mb-4;
-      }
-    }
-
-    + .merged-has-no-title{
-      @apply -mt-16 md:-mt-[74px];
-
-      .s-slider-block__title {
-        @apply sm:mb-0;
-      }
-    }
+  img {
+    @apply w-full h-full object-cover transition-transform duration-700;
   }
-
-  &--categories{
-    @apply relative overflow-hidden;
-
-    &__title{
-      @apply font-bold text-base sm:text-lg sm:mb-4 relative z-1 min-h-[28px];
-    }
-  }
-
-  &--features{
-    &__item{
-      @apply cursor-pointer bg-white transition-shadow duration-500 hover:shadow-default rounded-md flex-grow flex flex-col items-center px-4 py-8 md:px-8 text-center;
-
-      &:first-child{
-        @apply col-span-2 md:col-span-1;
-      }
-
-      .feature-icon{
-        @apply mb-3 bg-primary w-16 h-16 rounded-full flex items-center justify-center overflow-hidden;
-
-        i{
-          @apply text-primary-reverse text-3xl;
-        }
-      }
-
-      h2{
-        @apply font-bold text-sm text-gray-800 mb-1;
-      }
-
-      p{
-        @apply text-sm text-gray-500;
-      }
-
-      &:hover {
-        .feature-icon i {
-          animation: toRightFromLeft 0.3s forwards;
-        }
-      }
-    }
-  }
+  &:hover img { transform: scale(1.06); }
 }
 
-// repeated block with narrow top spacing
-.s-block--features + .s-block--features,
-.s-block--fixed-banner + .s-block--fixed-banner,
-.s-block--banners + .s-block--banners {
-  margin-top: 2em;
-}
-
-.s-block--tabs-produtcs + .s-block--tabs-produtcs {
-  padding-top: 2em;
+.mek-community__hover {
+  @apply absolute inset-0 bg-ink/0 hover:bg-ink/15 transition-colors;
 }

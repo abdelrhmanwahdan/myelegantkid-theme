@@ -1,0 +1,133 @@
+{#
+Story timeline — 5 milestones, Alpine.js powered
+#}
+{% set milestones = [
+  {
+    'num': '01',
+    'tag': theme.is_rtl ? 'البداية' : 'The Beginning',
+    'title': theme.is_rtl ? 'فكرة وُلدت من قلب حائل' : 'Born from the heart of Hail',
+    'body': theme.is_rtl
+      ? 'قصة بدأت بشغف حقيقي بالأناقة والتفاصيل — متجر يحمل روح المنطقة ويقدم ما لم يكن متاحاً للطفل السعودي.'
+      : 'A story born from a genuine passion for elegance and detail — a boutique carrying the soul of the region.'
+  },
+  {
+    'num': '02',
+    'tag': theme.is_rtl ? 'الفستان الأول' : 'First Dress',
+    'title': theme.is_rtl ? 'أول فستان استقبال' : 'The first welcome dress',
+    'body': theme.is_rtl
+      ? 'تشكيلة فساتين الاستقبال — قطع صُمِّمت لتكون ذكرى لا تُنسى في أجمل لحظات العمر.'
+      : 'Newborn welcome dresses — pieces designed to become unforgettable memories.'
+  },
+  {
+    'num': '03',
+    'tag': theme.is_rtl ? 'ابتكار' : 'Innovation',
+    'title': theme.is_rtl ? 'لوحات الاستقبال الخشبية' : 'Wooden welcome boards',
+    'body': theme.is_rtl
+      ? 'منتج فريد لا تجديه في أي مكان — لوحة خشبية مخصصة باسم المولود، تحكي قصته قبل أن يتكلم.'
+      : 'A unique product found nowhere else — a custom wooden board telling the newborn\'s story.'
+  },
+  {
+    'num': '04',
+    'tag': theme.is_rtl ? 'التوسع' : 'Growth',
+    'title': theme.is_rtl ? '١٠ تشكيلات وأكثر' : 'Ten collections and growing',
+    'body': theme.is_rtl
+      ? 'من الفساتين إلى الإكسسوارات والهدايا والحقائب — مجموعة متكاملة تلبي كل احتياج الأسرة.'
+      : 'From dresses to accessories, gifts and bags — a complete collection for every family need.'
+  },
+  {
+    'num': '05',
+    'tag': theme.is_rtl ? 'اليوم' : 'Today',
+    'title': theme.is_rtl ? 'من حائل إلى كل بيت' : 'From Hail to every home',
+    'body': theme.is_rtl
+      ? 'نوصل إليك أينما كنتِ في المملكة — كل قطعة مغلفة بعناية كهدية لأغلى الناس.'
+      : 'We deliver anywhere in the Kingdom — every piece wrapped as a gift for your loved ones.'
+  }
+] %}
+
+<section class="mek-story" x-data="mekStory()">
+  <div class="mek-grain-overlay" aria-hidden="true"></div>
+  <div class="container">
+
+    {# Header #}
+    <div class="mek-story__header">
+      <p class="mek-eyebrow mek-eyebrow--light">{{ theme.is_rtl ? 'قصتنا' : 'Our Story' }}</p>
+      <span class="mek-story__brand-tag" dir="ltr">MY ELEGANT KID · HAIL</span>
+    </div>
+
+    <h2 class="mek-display mek-story__heading js-mek-reveal">
+      {{ theme.is_rtl
+        ? 'من <em>فكرة</em><br>إلى أناقة خالدة'
+        : 'From an <em>idea</em><br>to timeless elegance' }}
+    </h2>
+
+    {# Polaroid fan #}
+    <div class="mek-story__fan"
+         @touchstart="touchStart($event)"
+         @touchend="touchEnd($event)">
+      {% for m in milestones %}
+        <button class="mek-polaroid"
+                :class="polaroidClass({{ loop.index0 }})"
+                :style="polaroidStyle({{ loop.index0 }}, {{ loop.index0 % 2 == 0 ? '-' : '' }}{{ [1.5, 2, 3][loop.index0 % 3] }})"
+                @click="active = {{ loop.index0 }}"
+                aria-label="{{ m.tag }}">
+          <div class="mek-polaroid__inner">
+            {% if store.logo %}
+              <img class="mek-polaroid__img"
+                   src="{{ store.logo|cdn(260) }}"
+                   alt=""
+                   loading="lazy">
+            {% endif %}
+            <p class="mek-polaroid__tag">{{ m.tag }}</p>
+          </div>
+          <div class="mek-polaroid__pin" aria-hidden="true"></div>
+        </button>
+      {% endfor %}
+    </div>
+
+    {# Navigation dots + arrows #}
+    <div class="mek-story__nav">
+      <button class="mek-story__arrow" @click="{{ theme.is_rtl ? 'next()' : 'prev()' }}" :disabled="active === 0" aria-label="Previous">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <div class="mek-story__dots">
+        {% for m in milestones %}
+          <button class="mek-story__dot"
+                  :class="active === {{ loop.index0 }} ? 'is-active' : ''"
+                  @click="active = {{ loop.index0 }}"
+                  aria-label="{{ m.num }}">
+          </button>
+        {% endfor %}
+      </div>
+      <button class="mek-story__arrow" @click="{{ theme.is_rtl ? 'prev()' : 'next()' }}" :disabled="active === {{ milestones|length - 1 }}" aria-label="Next">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+
+    {# Active slide text #}
+    <div class="mek-story__text-area">
+      {% for m in milestones %}
+        <div class="mek-story__slide" :class="active === {{ loop.index0 }} ? 'is-active' : ''">
+          <div class="mek-story__tag-row">
+            <span class="mek-story__rule"></span>
+            <span class="mek-eyebrow mek-eyebrow--light">{{ m.tag }}</span>
+            <span class="mek-story__counter" dir="ltr">{{ m.num }} / {{ "%02d"|format(milestones|length) }}</span>
+            <span class="mek-story__rule"></span>
+          </div>
+          <h3 class="mek-display mek-story__slide-title">{{ m.title }}</h3>
+          <p class="mek-story__slide-body">{{ m.body }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="mek-story__cta">
+      <a href="{{ link('pages', 'about') }}" class="mek-btn mek-btn--ghost-light">
+        {{ theme.is_rtl ? 'اقرئي القصة كاملة' : 'Read the full story' }}
+      </a>
+    </div>
+
+  </div>
+</section>

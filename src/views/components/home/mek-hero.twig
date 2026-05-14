@@ -1,0 +1,81 @@
+{#
+| component.image      | string  | Hero background image URL
+| component.heading    | string  | Main headline (multilanguage)
+| component.subheading | string  | Subtitle (multilanguage)
+| component.cta_text   | string  | Primary CTA label
+| component.cta_url    | string  | Primary CTA URL
+| component.cta2_text  | string  | Secondary CTA label
+| component.cta2_url   | string  | Secondary CTA URL
+#}
+{% set bg = component.image ? component.image : store.logo %}
+{% set heading = component.heading ?? (theme.is_rtl ? 'لحظة الاستقبال تستحق التفاصيل' : 'Every first moment deserves the finest details') %}
+{% set subhead = component.subheading ?? (theme.is_rtl ? 'أزياء وإكسسوارات مختارة بعناية للمواليد والأطفال' : 'Curated fashion & accessories for newborns and children') %}
+{% set cta1   = component.cta_text ?? (theme.is_rtl ? 'تسوقي الآن' : 'Shop the edit') %}
+{% set cta1u  = component.cta_url ?? link('products') %}
+{% set cta2   = component.cta2_text ?? (theme.is_rtl ? 'القصة' : 'Our story') %}
+{% set cta2u  = component.cta2_url ?? link('pages', 'about') %}
+
+<section class="mek-hero">
+  <div class="mek-hero__wrap">
+
+    {# ── Hero image card ───────────────────────────────────────── #}
+    <div class="mek-hero__card js-mek-reveal">
+
+      {# Background image #}
+      {% if bg %}
+        <img class="mek-hero__img"
+             src="{{ bg|cdn('w=1400,h=788,fit=cover,f=webp,q=80') }}"
+             srcset="{{ bg|cdn('w=800,h=450,fit=cover,f=webp,q=75') }} 800w,
+                     {{ bg|cdn('w=1200,h=675,fit=cover,f=webp,q=80') }} 1200w,
+                     {{ bg|cdn('w=1400,h=788,fit=cover,f=webp,q=80') }} 1400w"
+             sizes="100vw"
+             alt=""
+             loading="eager"
+             fetchpriority="high">
+      {% endif %}
+
+      {# Grain overlay #}
+      <div class="mek-grain-overlay" aria-hidden="true"></div>
+
+      {# Directional veil — RTL: gradient from right, LTR: from left #}
+      <div class="mek-hero__veil {{ theme.is_rtl ? 'mek-hero__veil--rtl' : 'mek-hero__veil--ltr' }}" aria-hidden="true"></div>
+
+      {# Bottom fade #}
+      <div class="mek-hero__bottom-fade" aria-hidden="true"></div>
+
+      {# Content #}
+      <div class="mek-hero__content">
+        <p class="mek-hero__eyebrow js-mek-fadeup" style="--delay:.25s">
+          {{ theme.is_rtl ? 'تشكيلة الاستقبال ٢٠٢٦' : 'The Welcome Edit · 2026' }}
+        </p>
+        <h1 class="mek-hero__heading mek-display js-mek-fadeup" style="--delay:.4s">
+          {{ heading|raw }}
+        </h1>
+        <div class="mek-hero__ctas js-mek-fadeup" style="--delay:.7s">
+          <a href="{{ cta1u }}" class="mek-btn mek-btn--light">{{ cta1 }}</a>
+          <a href="{{ cta2u }}" class="mek-hero__link">{{ cta2 }} →</a>
+        </div>
+      </div>
+    </div>{# /.mek-hero__card #}
+
+    {# ── Editorial intro text ──────────────────────────────────── #}
+    <div class="mek-intro js-mek-reveal">
+      <h2 class="mek-intro__heading mek-display">
+        {{ theme.is_rtl ? 'أناقة <em>خالدة</em>' : 'Timeless <em>elegance</em>' }}
+      </h2>
+      <div class="mek-intro__body">
+        <p>
+          {{ theme.is_rtl
+            ? 'مجموعة مختارة بعناية تجمع بين الأناقة والمعنى. كل قطعة مصنوعة لاحتفاء بالفرديّة والجمال في كل لحظة استقبال.'
+            : 'A curated edit blending sophistication with meaning. Each piece crafted to celebrate individuality and style.' }}
+        </p>
+        <p>
+          {{ theme.is_rtl
+            ? 'حرفية فائقة وتفاصيل دقيقة تجعل كل قطعة فريدة من نوعها — من حائل إلى كل بيت.'
+            : 'Unparalleled craftsmanship and exquisite details make every creation truly one of a kind — from Hail to every home.' }}
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,27 @@
+{#
+| items              | array     | Salla product items
+| items[].products[] | Product[] | Product objects
+| component.title    | string    | Section title
+#}
+{% set title = component.title ?? (theme.is_rtl ? 'مختارات نادرة' : 'Curated Picks') %}
+
+{% set products = [] %}
+{% for item in items %}
+  {% set products = products|merge(item.products) %}
+{% endfor %}
+
+{% if products is not empty %}
+<section class="mek-products-section mek-products-section--curated">
+  <div class="container">
+    <div class="mek-section-header js-mek-reveal">
+      <p class="mek-eyebrow">{{ theme.is_rtl ? 'بعناية فائقة' : 'hand-picked' }}</p>
+      <h2 class="mek-section-title mek-display">{{ title }}</h2>
+    </div>
+    <div class="mek-products-grid mek-products-grid--4">
+      {% for product in products|slice(0,4) %}
+        {% include 'components/home/mek-product-card.twig' with { product: product, index: loop.index0 } %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

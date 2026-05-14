@@ -1,0 +1,39 @@
+{#
+| product | Product  | Salla product object
+| index   | int      | Position index for stagger animation
+#}
+<article class="mek-product-card js-mek-reveal" style="--i:{{ index ?? 0 }}">
+  <a href="{{ product.url }}" class="mek-product-card__img-wrap" tabindex="-1" aria-hidden="true">
+    <img class="mek-product-card__img"
+         src="{{ product.thumbnail|cdn('w=480,h=600,fit=cover,f=webp,q=80') }}"
+         alt="{{ product.name }}"
+         loading="{{ (index ?? 0) < 4 ? 'eager' : 'lazy' }}"
+         width="480" height="600">
+    {% if product.is_on_sale %}
+      <span class="mek-product-card__badge mek-product-card__badge--sale">
+        {{ theme.is_rtl ? 'تخفيض' : 'Sale' }}
+      </span>
+    {% elseif product.is_new %}
+      <span class="mek-product-card__badge mek-product-card__badge--new">
+        {{ theme.is_rtl ? 'جديد' : 'New' }}
+      </span>
+    {% endif %}
+    <salla-wishlist-button product-id="{{ product.id }}" class="mek-product-card__wishlist"></salla-wishlist-button>
+  </a>
+
+  <div class="mek-product-card__info">
+    <a href="{{ product.url }}" class="mek-product-card__name">{{ product.name }}</a>
+    <div class="mek-product-card__pricing">
+      {% if product.is_on_sale and product.sale_price %}
+        <span class="mek-product-card__price mek-product-card__price--sale">{{ product.sale_price.formatted }}</span>
+        <span class="mek-product-card__price mek-product-card__price--original">{{ product.price.formatted }}</span>
+      {% else %}
+        <span class="mek-product-card__price">{{ product.price.formatted }}</span>
+      {% endif %}
+    </div>
+    <salla-add-product-button
+      product-id="{{ product.id }}"
+      class="mek-product-card__atc">
+    </salla-add-product-button>
+  </div>
+</article>

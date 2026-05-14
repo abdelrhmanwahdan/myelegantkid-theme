@@ -1,0 +1,20 @@
+<div class="mek-marquee" aria-hidden="true" dir="ltr">
+  {# Two tracks: forward + reverse at 40% opacity #}
+  {% set words = ['MY ELEGANT KID', '✦', 'حائل', '✦', 'Atelier', '✦', 'Newborn Couture', '✦', 'مختارات فاخرة', '✦', 'Fine Accessories', '✦', 'هدايا الاستقبال', '✦', 'Luxury Gifts', '✦'] %}
+
+  <div class="mek-marquee__track mek-marquee__track--fwd">
+    {% for _ in 1..4 %}
+      {% for word in words %}
+        <span class="mek-marquee__word {{ word == '✦' ? 'mek-marquee__word--sep' : '' }}">{{ word }}</span>
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+  <div class="mek-marquee__track mek-marquee__track--rev">
+    {% for _ in 1..4 %}
+      {% for word in words|reverse %}
+        <span class="mek-marquee__word {{ word == '✦' ? 'mek-marquee__word--sep' : '' }}">{{ word }}</span>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
