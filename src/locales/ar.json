@@ -27,6 +27,9 @@
       "open_menu": "فتح القائمة",
       "close_menu": "إغلاق القائمة"
     },
+    "products": {
+      "filters": "التصفية"
+    },
     "footer": {
       "tagline": "أزياء وإكسسوارات مختارة بعناية للمواليد والأطفال — أتيليه حائل",
       "explore_title": "استكشفي",
@@ -40,6 +43,14 @@
   "pages": {
     "cart": {
       "cart_options": "خيارات السلة"
+    },
+    "products": {
+      "shipping": "الشحن",
+      "delivery_info": "شحن مجاني فوق ٢٩٩ ر.س — توصيل خلال ١–٣ أيام عمل",
+      "returns": "الإرجاع",
+      "returns_info": "إرجاع سهل خلال ٧ أيام من الاستلام",
+      "packaging": "التغليف",
+      "packaging_info": "تغليف هدية فاخر مع كل طلب"
     },
     "order": {
       "can_edit_or_delete_your_review_within": "يمكنك تعديل أو حذف تقييمك خلال",

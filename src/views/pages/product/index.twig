@@ -9,7 +9,7 @@
 | category.url               | string      |                                                                      |
 | category.sub_categories    | ?Category[] |                                                                      |
 | category.image             | ?string     |                                                                      |
-| filters                     | bool        | is filters allowed here or not                                        |
+| filters                    | bool        | is filters allowed here or not                                       |
 | sort_options[]             | SortList[]  |                                                                      |
 | sort_options[].id          | string      | ourSuggest, bestSell, topRated, priceFromTopToLow, priceFromLowToTop |
 | sort_options[].name        | string      |                                                                      |
@@ -18,61 +18,122 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
-    <div class="container px-2.5 ms:px-5 mb-10">
-        {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
-        <nav class="breadcrumbs w-full py-5">
-            <salla-breadcrumb></salla-breadcrumb>
-        </nav>
-        <div class="flex items-start flex-col md:flex-row">
-            {% if filters %}
-                <button class="btn--close-sm close-filters sicon-cancel hidden"></button>
-                <salla-filters class="md:w-72 lg:sticky lg:top-20 flex-none" id="filters-menu"></salla-filters>
-            {% endif %}
 
-            <div class="main-content flex-1 w-full {{ filters ? 'ltr:lg:ml-8 rtl:lg:mr-8' : '' }}">
-                <div class="mb-4 sm:mb-6 flex justify-between items-center">
-                    <h1 class="font-bold text-xl rtl:pl-3 ltr:pr-3" id="page-main-title">{{ page.title|raw }}</h1>
-                    <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                        {% if filters %}
-                            <a href="#filters-menu"
-                               class="filters-trigger bg-border-color text-primary lg:hidden mt-2">
-                                <i class="sicon-filter text-gray-text text-2xl me-2.5"></i>
-                            </a>
-                        {% endif %}
-                        {% if sort_options|length %}
-                            <div class="flex items-center">
-                                <label class="hidden sm:block rtl:ml-3 ltr:mr-3 whitespace-nowrap"
-                                       for="product-filter">{{ trans('pages.categories.sorting') }}</label>
-                                <select id="product-filter" class="form-input pt-0 pb-1 rtl:md:pl-10 ltr:md:pr-10">
-                                    {% for sort in sort_options %}
-                                        <option value="{{ sort.id }}" {{ sort.is_selected?'selected':'' }}>{{ sort.name }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        {% endif %}
-                    </div>
-
-                </div>
-
-                {% hook 'product:index.items.start' %}
-                <div class="flex min-h-screen">
-                    <salla-products-list class="flex-1 min-w-0 overflow-auto "
-                        source="{{ page.slug }}"
-                        source-value="{{ page.id }}"
-                        {{ filters ?'filters-Results':'' }}>
-					          </salla-products-list>
-                </div>
-                {% hook 'product:index.items.end' %}
-            </div>
-        </div>
-    </div>
-
-
-    {% if store.settings.category.testimonial_enabled %}
-        {% component 'home.testimonials' %}
+{# ── Category hero ─────────────────────────────────────────── #}
+{% if category %}
+  <div class="mek-cat-hero {% if category.image %}mek-cat-hero--with-img{% endif %}">
+    {% if category.image %}
+      <img class="mek-cat-hero__bg"
+           src="{{ category.image|cdn('w=1400,h=420,fit=cover,f=webp,q=75') }}"
+           alt="{{ category.name }}"
+           loading="eager"
+           width="1400"
+           height="420">
+      <div class="mek-cat-hero__veil" aria-hidden="true"></div>
     {% endif %}
+    <div class="container mek-cat-hero__inner">
+      <nav class="mek-breadcrumb mek-breadcrumb--light" aria-label="{{ trans('common.titles.breadcrumb') }}">
+        <salla-breadcrumb></salla-breadcrumb>
+      </nav>
+      <h1 class="mek-display mek-cat-hero__title">{{ page.title|raw }}</h1>
+
+      {# Sub-category pills #}
+      {% if category.sub_categories|length %}
+        <div class="mek-cat-hero__subs">
+          {% for sub in category.sub_categories %}
+            <a href="{{ sub.url }}" class="mek-cat-hero__sub-pill">{{ sub.name }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% else %}
+  {# Generic products page (no category) #}
+  <div class="container">
+    <nav class="mek-breadcrumb" aria-label="{{ trans('common.titles.breadcrumb') }}">
+      <salla-breadcrumb></salla-breadcrumb>
+    </nav>
+    <h1 class="mek-display mek-plp__title js-mek-reveal">{{ page.title|raw }}</h1>
+  </div>
+{% endif %}
+
+{# ── Listing layout ─────────────────────────────────────────── #}
+<div class="container mek-plp">
+  <div class="mek-plp__inner {% if filters %}mek-plp__inner--has-filters{% endif %}">
+
+    {# ── Filters sidebar ──────────────────────────────────── #}
+    {% if filters %}
+      <button class="mek-plp__close-filters btn--close-sm close-filters sicon-cancel hidden"
+              aria-label="{{ trans('common.form.close') }}">
+      </button>
+      <salla-filters
+          class="mek-plp__filters"
+          id="filters-menu">
+      </salla-filters>
+    {% endif %}
+
+    {# ── Products area ──────────────────────────────────────── #}
+    <div class="mek-plp__products">
+
+      {# Toolbar #}
+      <div class="mek-plp__toolbar">
+        <div class="mek-plp__toolbar-start">
+          {% if filters %}
+            <a href="#filters-menu"
+               class="mek-plp__filters-trigger filters-trigger lg:hidden"
+               aria-label="{{ trans('blocks.products.filters') }}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="4" y1="6" x2="20" y2="6"/>
+                <line x1="8" y1="12" x2="20" y2="12"/>
+                <line x1="12" y1="18" x2="20" y2="18"/>
+              </svg>
+              <span>{{ trans('blocks.products.filters') }}</span>
+            </a>
+          {% endif %}
+        </div>
+
+        <div class="mek-plp__toolbar-end">
+          {% if sort_options|length %}
+            <div class="mek-plp__sort">
+              <label class="mek-eyebrow mek-plp__sort-label hidden sm:block"
+                     for="product-sort">
+                {{ trans('pages.categories.sorting') }}
+              </label>
+              <select id="product-sort" class="mek-plp__sort-select">
+                {% for sort in sort_options %}
+                  <option value="{{ sort.id }}" {{ sort.is_selected ? 'selected' : '' }}>
+                    {{ sort.name }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      {% hook 'product:index.items.start' %}
+
+      <div class="mek-plp__grid-wrap">
+        <salla-products-list
+            class="mek-plp__list"
+            source="{{ page.slug }}"
+            source-value="{{ page.id }}"
+            {{ filters ? 'filters-Results' : '' }}>
+        </salla-products-list>
+      </div>
+
+      {% hook 'product:index.items.end' %}
+    </div>
+  </div>
+</div>
+
+{# ── Category testimonials (if enabled) ──────────────────── #}
+{% if store.settings.category.testimonial_enabled %}
+  {% component 'home.testimonials' %}
+{% endif %}
+
 {% endblock %}
 
 {% block scripts %}
-    <script defer src="{{ 'product.js' | asset }}"></script>
+  <script defer src="{{ 'product.js' | asset }}"></script>
 {% endblock %}

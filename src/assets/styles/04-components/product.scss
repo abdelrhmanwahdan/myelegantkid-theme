@@ -412,3 +412,446 @@ salla-quantity-input[max='1']{
     @apply cursor-not-allowed
   }
 }
+
+/* ═══════════════════════════════════════════════════════
+   MEK PRODUCT DETAIL PAGE (PDP)
+   ═══════════════════════════════════════════════════════ */
+
+/* Breadcrumb */
+.mek-breadcrumb {
+  @apply py-5 text-[10.5px] tracking-[0.25em] uppercase text-mist font-light;
+}
+.mek-breadcrumb--light {
+  @apply text-sand/80;
+}
+
+/* PDP grid: 7-col gallery | 5-col info */
+.mek-pdp {
+  @apply py-8 md:py-12;
+
+  &__grid {
+    @apply flex flex-col md:grid md:grid-cols-12 gap-8 lg:gap-16 items-stretch;
+  }
+
+  /* ── Gallery ── */
+  &__gallery {
+    @apply md:col-span-7 md:sticky top-24 self-start overflow-hidden;
+  }
+
+  &__slider {
+    @apply rounded-md overflow-hidden;
+  }
+
+  &__slide {
+    @apply block w-full;
+  }
+
+  &__img {
+    @apply w-full h-full object-cover;
+  }
+
+  &__thumb {
+    @apply overflow-hidden rounded-md bg-cream cursor-pointer;
+  }
+
+  &__thumb-img {
+    @apply w-full h-full object-cover;
+  }
+
+  &__badge {
+    @apply absolute z-[2] top-3 start-3 text-[9px] tracking-[0.25em] uppercase px-2.5 py-1 rounded-sm;
+
+    &--sale {
+      @apply bg-ink text-bone;
+    }
+  }
+
+  &__promo-tag {
+    @apply absolute z-[2] top-3 end-3 bg-gold text-pearl text-[9px] tracking-[0.2em] uppercase px-2.5 py-1 rounded-sm;
+  }
+
+  &__calories-badge {
+    @apply absolute z-[2] top-4 end-4 bg-pearl shadow-sm flex flex-col items-center justify-center rounded-full w-20 h-20 md:w-24 md:h-24;
+  }
+
+  &__calories-num {
+    @apply text-red-600 text-xl font-bold leading-none;
+  }
+
+  &__calories-label {
+    @apply text-[10px] text-mist;
+  }
+
+  &__wishlist-btn {
+    @apply absolute z-[2] top-3 start-3;
+  }
+
+  /* ── Info ── */
+  &__info {
+    @apply md:col-span-5 md:py-16 md:sticky md:top-[120px] md:self-start;
+  }
+
+  &__category-link {
+    @apply mek-eyebrow hover:text-ink transition-colors no-underline;
+  }
+
+  &__brand {
+    @apply mb-4 w-12;
+  }
+
+  &__brand-logo {
+    @apply max-h-full object-contain;
+  }
+
+  &__title {
+    @apply text-[clamp(2rem,3.5vw,3rem)] mt-4 text-ink leading-tight;
+  }
+
+  &__subtitle {
+    @apply text-sm text-mist leading-6 mt-1;
+  }
+
+  &__rating {
+    @apply mt-3;
+  }
+
+  /* Price */
+  &__price-row {
+    @apply mt-6;
+  }
+
+  &__price-sale {
+    @apply flex items-baseline gap-3;
+  }
+
+  &__price-normal {
+    @apply flex items-baseline gap-2;
+  }
+
+  &__price-current {
+    @apply text-[28px] text-ink;
+
+    &--sale {
+      @apply text-gold-deep;
+    }
+  }
+
+  &__price-was {
+    @apply text-[15px] text-mist line-through font-light;
+  }
+
+  &__price-starting-label {
+    @apply text-[11px] tracking-[0.2em] uppercase text-mist font-light;
+  }
+
+  &__tax-note {
+    @apply text-[11px] text-mist mt-1;
+  }
+
+  /* Description */
+  &__desc {
+    @apply mt-8;
+  }
+
+  &__desc-article {
+    @apply text-[14px] leading-loose text-[#4a3f37] font-light;
+
+    ul, li { list-style: inherit !important; }
+    ul, ol { @apply px-6; }
+    ol { list-style: auto !important; }
+    a { @apply text-blue-700; }
+
+    &--collapsed {
+      @apply relative overflow-hidden transition-all duration-300;
+    }
+  }
+
+  &__read-more {
+    @apply text-[12px] tracking-[0.2em] uppercase text-mist hover:text-ink transition-colors cursor-pointer mt-2 inline-block;
+  }
+
+  /* Tags */
+  &__tags {
+    @apply mt-4 flex flex-wrap gap-2;
+  }
+
+  &__tag {
+    @apply text-[10px] tracking-[0.2em] uppercase text-mist border border-line px-3 py-1 rounded-full
+           hover:border-ink hover:text-ink transition-colors no-underline;
+  }
+
+  /* Social row */
+  &__social-row {
+    @apply flex items-center gap-3 mt-6;
+  }
+
+  &__share {
+    @apply inline-flex;
+  }
+
+  &__wishlist-btn-info {
+    /* styled by Salla */
+  }
+
+  /* Scarcity */
+  &__scarcity {
+    @apply flex flex-wrap gap-4 mt-4 text-[12px] text-mist;
+  }
+
+  &__scarcity-item {
+    @apply flex items-center gap-1.5;
+    i { @apply text-gold; }
+  }
+
+  /* SKU */
+  &__sku {
+    @apply flex items-center gap-3 mt-3 text-[11px] text-mist tracking-wide;
+  }
+
+  &__sku-label {
+    @apply uppercase tracking-[0.2em];
+  }
+
+  &__sku-val {
+    @apply text-ink;
+  }
+
+  /* Availability */
+  &__availability {
+    @apply flex items-center justify-between mt-4 py-3 border-t border-b border-line;
+  }
+
+  &__availability-link {
+    @apply text-[12px] tracking-[0.2em] uppercase text-ink hover:text-gold transition-colors
+           flex items-center gap-1 no-underline;
+  }
+
+  /* Form */
+  &__form {
+    @apply mt-10;
+  }
+
+  &__form-price {
+    @apply flex items-center justify-between py-4 border-t border-line;
+  }
+
+  &__form-price-label {
+    @apply mek-eyebrow;
+  }
+
+  &__form-price-val {
+    @apply flex items-baseline gap-3;
+  }
+
+  &__out-of-stock {
+    @apply text-[13px] text-red-600 font-medium;
+  }
+
+  &__preorder {
+    @apply mt-4;
+  }
+
+  /* CTA row */
+  &__cta-row {
+    @apply mt-5;
+  }
+
+  &__qty {
+    @apply flex items-center justify-between mb-5;
+  }
+
+  &__qty-label {
+    @apply font-medium;
+  }
+
+  &__qty-input {
+    @apply flex justify-end;
+  }
+
+  &__add-btn {
+    @apply w-full mt-5;
+  }
+
+  &__gifting {
+    @apply mt-5;
+  }
+
+  &__quick-order {
+    @apply mt-5 block;
+  }
+
+  /* Trust row */
+  &__trust {
+    @apply mt-10 pt-8 border-t border-line space-y-4;
+  }
+
+  &__trust-item {
+    @apply flex items-start gap-4;
+  }
+
+  &__trust-key {
+    @apply text-[10px] tracking-[0.3em] uppercase text-mist font-light w-28 flex-shrink-0 pt-0.5;
+  }
+
+  &__trust-val {
+    @apply text-[12px] text-[#4a3f37] font-light leading-relaxed;
+  }
+}
+
+/* ── Atelier Notes strip ─────────────────────────────── */
+.mek-pdp-notes {
+  @apply mt-16 md:mt-24 pt-10 border-t border-sand;
+
+  &__eyebrow {
+    @apply mb-10;
+  }
+
+  &__grid {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12;
+  }
+
+  &__item {
+    @apply flex flex-col gap-2;
+  }
+
+  &__label {
+    @apply text-[9.5px] tracking-[0.35em] uppercase text-mist font-light;
+  }
+
+  &__val {
+    @apply text-[13px] text-ink font-light leading-relaxed;
+  }
+
+  &__promise {
+    @apply mt-12 md:mt-16 py-8 border-t border-b border-sand
+           flex flex-col md:flex-row items-center justify-between gap-6
+           text-center md:text-start;
+  }
+
+  &__promise-text {
+    @apply text-[clamp(1.1rem,2vw,1.5rem)] text-ink leading-snug max-w-[40ch];
+  }
+
+  &__brand-tag {
+    @apply text-[10px] tracking-[0.4em] uppercase text-mist font-light flex-shrink-0;
+  }
+}
+
+/* ── Related products ─────────────────────────────────── */
+.mek-pdp-related {
+  @apply mt-16 md:mt-24 pb-16;
+}
+
+/* ═══════════════════════════════════════════════════════
+   MEK PRODUCT LISTING PAGE (PLP)
+   ═══════════════════════════════════════════════════════ */
+
+/* Category hero */
+.mek-cat-hero {
+  @apply relative bg-sand overflow-hidden;
+  min-height: 240px;
+
+  &--with-img {
+    min-height: 320px;
+
+    @screen md { min-height: 420px; }
+  }
+
+  &__bg {
+    @apply absolute inset-0 w-full h-full object-cover;
+  }
+
+  &__veil {
+    @apply absolute inset-0 bg-ink/40;
+  }
+
+  &__inner {
+    @apply relative z-[1] py-12;
+  }
+
+  &__title {
+    @apply text-[clamp(2rem,5vw,4rem)] text-bone mt-4 leading-tight;
+  }
+
+  &__subs {
+    @apply flex flex-wrap gap-2 mt-5;
+  }
+
+  &__sub-pill {
+    @apply text-[10px] tracking-[0.2em] uppercase text-bone/80 border border-bone/40
+           px-4 py-1.5 rounded-full hover:bg-bone/10 transition-colors no-underline;
+  }
+}
+
+/* PLP container */
+.mek-plp {
+  @apply py-10 md:py-14;
+
+  &__title {
+    @apply mek-display text-[clamp(1.75rem,4vw,3rem)] text-ink mb-8;
+  }
+
+  &__inner {
+    @apply flex items-start flex-col md:flex-row gap-8;
+
+    &--has-filters {
+      /* filters sidebar + products area side by side */
+    }
+  }
+
+  /* Filters sidebar */
+  &__filters {
+    @apply md:w-72 lg:sticky lg:top-20 flex-none;
+  }
+
+  &__close-filters {
+    @apply hidden;
+  }
+
+  /* Products area */
+  &__products {
+    @apply flex-1 min-w-0;
+  }
+
+  /* Toolbar */
+  &__toolbar {
+    @apply flex items-center justify-between mb-6 pb-4 border-b border-line;
+  }
+
+  &__toolbar-start,
+  &__toolbar-end {
+    @apply flex items-center gap-3;
+  }
+
+  &__filters-trigger {
+    @apply flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-mist
+           border border-line px-4 py-2 rounded-full hover:border-ink hover:text-ink
+           transition-colors no-underline;
+  }
+
+  &__sort {
+    @apply flex items-center gap-3;
+  }
+
+  &__sort-label {
+    @apply whitespace-nowrap;
+  }
+
+  &__sort-select {
+    @apply text-[12px] text-ink border border-line rounded-sm px-3 py-2
+           bg-transparent focus:outline-none focus:border-ink transition-colors cursor-pointer;
+  }
+
+  &__grid-wrap {
+    @apply min-h-screen;
+  }
+
+  &__list {
+    @apply flex-1 min-w-0 overflow-auto;
+  }
+}
+
+/* Filters panel RTL/LTR margin */
+.mek-plp__inner--has-filters .mek-plp__products {
+  @apply rtl:lg:me-8 ltr:lg:ms-8;
+}
