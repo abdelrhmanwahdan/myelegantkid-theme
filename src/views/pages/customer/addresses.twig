@@ -1,0 +1,10 @@
+{% extends "layouts.customer" %}
+{% block inner_content %}
+
+<div class="mek-customer-section" id="addresses">
+  {% hook 'customer:addresses.start' %}
+  <salla-addresses class="mek-customer-section__content"></salla-addresses>
+  {% hook 'customer:addresses.end' %}
+</div>
+
+{% endblock %}

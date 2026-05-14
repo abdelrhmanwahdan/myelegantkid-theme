@@ -1,0 +1,31 @@
+{% extends "layouts.master" %}
+{% block content %}
+
+<section class="mek-error-page">
+  <div class="mek-grain-overlay" aria-hidden="true"></div>
+  <div class="container mek-error-page__inner">
+
+    <p class="mek-error-page__code" aria-hidden="true">404</p>
+    <h1 class="mek-display mek-error-page__title">
+      {{ theme.is_rtl ? 'الصفحة غير موجودة' : 'Page not found' }}
+    </h1>
+    <p class="mek-error-page__subtitle">
+      {{ theme.is_rtl
+        ? 'يبدو أن هذه الصفحة لا تعيش هنا بعد الآن.'
+        : 'This page seems to have moved or no longer exists.' }}
+    </p>
+
+    <div class="mek-error-page__actions">
+      <a href="{{ link('/') }}" class="mek-btn mek-btn--primary">
+        {{ theme.is_rtl ? 'العودة للرئيسية' : 'Back to home' }}
+      </a>
+      <a href="{{ link('products') }}" class="mek-btn mek-btn--ghost">
+        {{ theme.is_rtl ? 'تصفح المتجر' : 'Browse the store' }}
+      </a>
+    </div>
+
+    <div class="mek-error-page__brand" dir="ltr" aria-hidden="true">MY ELEGANT KID · HAIL</div>
+  </div>
+</section>
+
+{% endblock %}

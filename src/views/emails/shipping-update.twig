@@ -1,0 +1,86 @@
+{#
+Shipping update email
+Variables: order, store, user
+#}
+<!DOCTYPE html>
+<html lang="{{ theme.is_rtl ? 'ar' : 'en' }}" dir="{{ theme.is_rtl ? 'rtl' : 'ltr' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ theme.is_rtl ? 'تحديث الشحن' : 'Shipping Update' }} #{{ order.reference_id }}</title>
+  <style>
+    body { margin:0; padding:0; background:#f6f1e8; font-family:'Arial',sans-serif; color:#2a201a; }
+    .email-wrap { max-width:600px; margin:0 auto; background:#faf5ec; }
+    .email-header { background:#2a201a; padding:32px 40px; text-align:center; }
+    .email-header img { max-width:160px; }
+    .email-header-brand { color:#b89464; font-size:10px; letter-spacing:0.4em; text-transform:uppercase; margin-top:8px; }
+    .email-body { padding:40px; }
+    .email-title { font-size:24px; font-weight:normal; margin:0 0 8px; }
+    .email-subtitle { font-size:13px; color:#b8a98f; margin:0 0 32px; }
+    .status-card { background:#f1ead9; border-radius:4px; padding:24px; margin-bottom:32px; }
+    .status-icon { font-size:32px; text-align:center; margin-bottom:12px; }
+    .status-label { font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:#b8a98f; text-align:center; }
+    .status-name { font-size:18px; text-align:center; margin-top:4px; color:#2a201a; }
+    .tracking-box { border:1px solid #ddd2bc; border-radius:4px; padding:16px 24px; margin-bottom:24px; }
+    .tracking-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#b8a98f; }
+    .tracking-num { font-size:16px; color:#2a201a; margin-top:4px; }
+    .btn { display:inline-block; background:#2a201a; color:#faf5ec; text-decoration:none; padding:14px 32px; font-size:11px; letter-spacing:0.35em; text-transform:uppercase; }
+    .email-footer { background:#2a201a; padding:24px 40px; text-align:center; }
+    .email-footer p { color:#b8a98f; font-size:11px; letter-spacing:0.15em; margin:4px 0; }
+    .email-footer a { color:#b89464; text-decoration:none; }
+  </style>
+</head>
+<body>
+<div class="email-wrap">
+
+  <div class="email-header">
+    {% if store.logo %}
+      <img src="{{ store.logo }}" alt="{{ store.name }}">
+    {% else %}
+      <p style="color:#faf5ec;font-size:20px;letter-spacing:0.1em;">{{ store.name }}</p>
+    {% endif %}
+    <p class="email-header-brand">MY ELEGANT KID · HAIL</p>
+  </div>
+
+  <div class="email-body">
+    <h1 class="email-title">
+      {{ theme.is_rtl ? 'تحديث طلبك' : 'Your order update' }}
+    </h1>
+    <p class="email-subtitle">
+      {{ theme.is_rtl
+        ? 'إليكِ آخر تحديث على حالة طلبك رقم #' ~ order.reference_id
+        : 'Here\'s the latest update on order #' ~ order.reference_id }}
+    </p>
+
+    {% if order.status %}
+      <div class="status-card">
+        <div class="status-label">{{ theme.is_rtl ? 'حالة الطلب' : 'Order status' }}</div>
+        <div class="status-name">{{ order.status.name }}</div>
+      </div>
+    {% endif %}
+
+    {% if order.shipping and order.shipping.number %}
+      <div class="tracking-box">
+        <div class="tracking-label">{{ theme.is_rtl ? 'رقم التتبع' : 'Tracking number' }}</div>
+        <div class="tracking-num">{{ order.shipping.number|raw }}</div>
+      </div>
+    {% endif %}
+
+    <div style="text-align:center;">
+      <a href="{{ order.url }}" class="btn">
+        {{ theme.is_rtl ? 'تتبع طلبك' : 'Track your order' }}
+      </a>
+    </div>
+  </div>
+
+  <div class="email-footer">
+    <p>{{ store.name }}</p>
+    {% if store.contacts.email %}
+      <p><a href="mailto:{{ store.contacts.email }}">{{ store.contacts.email }}</a></p>
+    {% endif %}
+    <p style="margin-top:16px;opacity:0.5;">© {{ "now"|date("Y") }} MY ELEGANT KID</p>
+  </div>
+
+</div>
+</body>
+</html>

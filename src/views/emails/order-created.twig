@@ -1,0 +1,117 @@
+{#
+Order confirmation email
+Variables: order, store, user
+#}
+<!DOCTYPE html>
+<html lang="{{ theme.is_rtl ? 'ar' : 'en' }}" dir="{{ theme.is_rtl ? 'rtl' : 'ltr' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ theme.is_rtl ? 'تأكيد طلبك' : 'Order Confirmation' }} #{{ order.reference_id }}</title>
+  <style>
+    body { margin: 0; padding: 0; background: #f6f1e8; font-family: 'Arial', sans-serif; color: #2a201a; }
+    .email-wrap { max-width: 600px; margin: 0 auto; background: #faf5ec; }
+    .email-header { background: #2a201a; padding: 32px 40px; text-align: center; }
+    .email-header img { max-width: 160px; }
+    .email-header-brand { color: #b89464; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; margin-top: 8px; }
+    .email-body { padding: 40px; }
+    .email-title { font-size: 24px; font-weight: normal; margin: 0 0 8px; }
+    .email-subtitle { font-size: 13px; color: #b8a98f; margin: 0 0 32px; }
+    .order-ref { background: #f1ead9; border-radius: 4px; padding: 16px 24px; text-align: center; margin-bottom: 32px; }
+    .order-ref-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: #b8a98f; }
+    .order-ref-num { font-size: 22px; color: #2a201a; margin-top: 4px; }
+    .items-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+    .items-table th { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #b8a98f; padding: 8px 0; border-bottom: 1px solid #e8dfca; text-align: start; }
+    .items-table td { font-size: 13px; padding: 12px 0; border-bottom: 1px solid #e8dfca; vertical-align: top; }
+    .totals-table { width: 100%; border-collapse: collapse; }
+    .totals-table td { font-size: 13px; padding: 8px 0; color: #4a3f37; }
+    .totals-table .total-row td { font-size: 16px; color: #2a201a; border-top: 1px solid #e8dfca; padding-top: 16px; }
+    .btn { display: inline-block; background: #2a201a; color: #faf5ec; text-decoration: none; padding: 14px 32px; font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; margin-top: 32px; }
+    .email-footer { background: #2a201a; padding: 24px 40px; text-align: center; }
+    .email-footer p { color: #b8a98f; font-size: 11px; letter-spacing: 0.15em; margin: 4px 0; }
+    .email-footer a { color: #b89464; text-decoration: none; }
+  </style>
+</head>
+<body>
+<div class="email-wrap">
+
+  <div class="email-header">
+    {% if store.logo %}
+      <img src="{{ store.logo }}" alt="{{ store.name }}">
+    {% else %}
+      <p style="color:#faf5ec; font-size:20px; letter-spacing:0.1em;">{{ store.name }}</p>
+    {% endif %}
+    <p class="email-header-brand">MY ELEGANT KID · HAIL</p>
+  </div>
+
+  <div class="email-body">
+    <h1 class="email-title">
+      {{ theme.is_rtl ? 'شكراً لطلبك' : 'Thank you for your order' }}{% if user.name %}, {{ user.name }}{% endif %}
+    </h1>
+    <p class="email-subtitle">
+      {{ theme.is_rtl
+        ? 'تم استلام طلبك بنجاح وسنبدأ تجهيزه في أقرب وقت.'
+        : 'Your order has been received and we\'ll start preparing it shortly.' }}
+    </p>
+
+    <div class="order-ref">
+      <div class="order-ref-label">{{ theme.is_rtl ? 'رقم الطلب' : 'Order number' }}</div>
+      <div class="order-ref-num">#{{ order.reference_id }}</div>
+    </div>
+
+    {% if order.items|length %}
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th>{{ theme.is_rtl ? 'المنتج' : 'Product' }}</th>
+            <th style="text-align:center;">{{ theme.is_rtl ? 'الكمية' : 'Qty' }}</th>
+            <th style="text-align:end;">{{ theme.is_rtl ? 'السعر' : 'Price' }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in order.items %}
+            <tr>
+              <td>{{ item.name }}</td>
+              <td style="text-align:center;">{{ item.quantity }}</td>
+              <td style="text-align:end;">{{ item.total|money }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <table class="totals-table">
+        <tr>
+          <td>{{ theme.is_rtl ? 'المجموع الفرعي' : 'Subtotal' }}</td>
+          <td style="text-align:end;">{{ order.sub_total|money }}</td>
+        </tr>
+        {% if order.shipping %}
+          <tr>
+            <td>{{ theme.is_rtl ? 'الشحن' : 'Shipping' }}</td>
+            <td style="text-align:end;">{{ order.shipping.cost|money }}</td>
+          </tr>
+        {% endif %}
+        <tr class="total-row">
+          <td><strong>{{ theme.is_rtl ? 'الإجمالي' : 'Total' }}</strong></td>
+          <td style="text-align:end;"><strong>{{ order.total|money }}</strong></td>
+        </tr>
+      </table>
+    {% endif %}
+
+    <div style="text-align:center;">
+      <a href="{{ order.url }}" class="btn">
+        {{ theme.is_rtl ? 'تفاصيل الطلب' : 'View order details' }}
+      </a>
+    </div>
+  </div>
+
+  <div class="email-footer">
+    <p>{{ store.name }}</p>
+    {% if store.contacts.email %}
+      <p><a href="mailto:{{ store.contacts.email }}">{{ store.contacts.email }}</a></p>
+    {% endif %}
+    <p style="margin-top:16px; opacity:0.5;">© {{ "now"|date("Y") }} MY ELEGANT KID</p>
+  </div>
+
+</div>
+</body>
+</html>

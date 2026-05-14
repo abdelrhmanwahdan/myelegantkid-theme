@@ -1,0 +1,40 @@
+{% extends "layouts.master" %}
+{% block content %}
+
+<section class="mek-auth">
+  <div class="mek-auth__inner">
+
+    {# Brand header #}
+    <div class="mek-auth__brand">
+      {% if store.logo %}
+        <a href="{{ link('/') }}" class="mek-auth__logo-link">
+          <img src="{{ store.logo }}" alt="{{ store.name }}" class="mek-auth__logo" width="140">
+        </a>
+      {% endif %}
+      <p class="mek-auth__tagline" dir="ltr">MY ELEGANT KID · HAIL</p>
+    </div>
+
+    <div class="mek-auth__card">
+      <h1 class="mek-display mek-auth__title">
+        {{ theme.is_rtl ? 'تسجيل الدخول' : 'Sign in' }}
+      </h1>
+      <p class="mek-auth__subtitle">
+        {{ theme.is_rtl
+          ? 'مرحباً بكِ مجدداً في عالم أناقة الأطفال'
+          : 'Welcome back to the world of children\'s elegance' }}
+      </p>
+
+      <salla-login class="mek-auth__form"></salla-login>
+
+      <p class="mek-auth__switch">
+        {{ theme.is_rtl ? 'ليس لديكِ حساب؟' : 'Don\'t have an account?' }}
+        <a href="{{ link('customer.register') }}" class="mek-auth__switch-link">
+          {{ theme.is_rtl ? 'إنشاء حساب' : 'Create one' }}
+        </a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

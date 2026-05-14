@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ theme.is_rtl ? 'ar' : 'en' }}" dir="{{ theme.is_rtl ? 'rtl' : 'ltr' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ store.name }} — {{ theme.is_rtl ? 'قيد الصيانة' : 'Under Maintenance' }}</title>
+  <link rel="stylesheet" href="{{ 'app.css' | asset }}">
+</head>
+<body class="theme-mek-atelier bg-bone min-h-screen flex items-center justify-center">
+
+  <section class="mek-maintenance">
+    <div class="mek-maintenance__inner">
+
+      {% if store.logo %}
+        <img src="{{ store.logo }}" alt="{{ store.name }}" class="mek-maintenance__logo" width="200">
+      {% endif %}
+
+      <h1 class="mek-display mek-maintenance__title">
+        {{ theme.is_rtl ? 'نعود قريباً' : 'We\'ll be back soon' }}
+      </h1>
+      <p class="mek-maintenance__subtitle">
+        {{ theme.is_rtl
+          ? 'نقوم ببعض التحسينات لنقدم لكِ تجربة أفضل. نعود إليكِ قريباً.'
+          : 'We\'re making some improvements to give you a better experience. Back shortly.' }}
+      </p>
+
+      {% if store.contacts.email %}
+        <a href="mailto:{{ store.contacts.email }}" class="mek-maintenance__contact">
+          {{ store.contacts.email }}
+        </a>
+      {% endif %}
+
+      <div class="mek-maintenance__brand" dir="ltr" aria-hidden="true">MY ELEGANT KID · HAIL</div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+{#
+| Variable      | Type    | Description       |
+|---------------|---------|-------------------|
+| page          | object  |                   |
+| search_query  | ?string | Current query     |
+| filters       | bool    |                   |
+| sort_options  | array   |                   |
+#}
+{% extends "layouts.master" %}
+{% block content %}
+
+{# Search header #}
+<div class="mek-search-header">
+  <div class="container mek-search-header__inner">
+    <nav class="mek-breadcrumb" aria-label="{{ trans('common.titles.breadcrumb') }}">
+      <salla-breadcrumb></salla-breadcrumb>
+    </nav>
+
+    <div class="mek-search-header__box js-mek-reveal">
+      <p class="mek-eyebrow">{{ theme.is_rtl ? 'بحث' : 'Search' }}</p>
+      <h1 class="mek-display mek-search-header__title">
+        {% if search_query %}
+          {{ theme.is_rtl ? 'نتائج: ' : 'Results for: ' }}<em>{{ search_query }}</em>
+        {% else %}
+          {{ theme.is_rtl ? 'ما الذي تبحثين عنه؟' : 'What are you looking for?' }}
+        {% endif %}
+      </h1>
+      <div class="mek-search-header__input-wrap">
+        <salla-search class="mek-search-header__input" placeholder="{{ theme.is_rtl ? 'ابحثي عن منتج...' : 'Search for a product...' }}"></salla-search>
+      </div>
+    </div>
+  </div>
+</div>
+
+{# Results #}
+<div class="container mek-plp">
+  <div class="mek-plp__inner {% if filters %}mek-plp__inner--has-filters{% endif %}">
+
+    {% if filters %}
+      <button class="mek-plp__close-filters btn--close-sm close-filters sicon-cancel hidden"
+              aria-label="{{ trans('common.form.close') }}"></button>
+      <salla-filters class="mek-plp__filters" id="filters-menu"></salla-filters>
+    {% endif %}
+
+    <div class="mek-plp__products">
+      <div class="mek-plp__toolbar">
+        <div class="mek-plp__toolbar-start">
+          {% if filters %}
+            <a href="#filters-menu" class="mek-plp__filters-trigger filters-trigger lg:hidden">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="4" y1="6" x2="20" y2="6"/>
+                <line x1="8" y1="12" x2="20" y2="12"/>
+                <line x1="12" y1="18" x2="20" y2="18"/>
+              </svg>
+              <span>{{ trans('blocks.products.filters') }}</span>
+            </a>
+          {% endif %}
+        </div>
+        <div class="mek-plp__toolbar-end">
+          {% if sort_options|length %}
+            <div class="mek-plp__sort">
+              <label class="mek-eyebrow mek-plp__sort-label hidden sm:block" for="product-sort">
+                {{ trans('pages.categories.sorting') }}
+              </label>
+              <select id="product-sort" class="mek-plp__sort-select">
+                {% for sort in sort_options %}
+                  <option value="{{ sort.id }}" {{ sort.is_selected ? 'selected' : '' }}>{{ sort.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="mek-plp__grid-wrap">
+        <salla-products-list
+            class="mek-plp__list"
+            source="{{ page.slug }}"
+            source-value="{{ page.id }}"
+            {{ filters ? 'filters-Results' : '' }}>
+        </salla-products-list>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+  <script defer src="{{ 'product.js' | asset }}"></script>
+{% endblock %}
