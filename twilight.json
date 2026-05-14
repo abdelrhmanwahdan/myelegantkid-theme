@@ -125,6 +125,26 @@
     ],
     "components": [
         {
+            "key": "mek-intro-000",
+            "title": { "ar": "مقدمة تحريرية", "en": "Editorial Intro" },
+            "icon": "sicon-typography",
+            "path": "home.mek-intro",
+            "fields": [
+                {
+                    "type": "string", "icon": "sicon-format-text-alt",
+                    "id": "eyebrow", "label": { "ar": "العبارة العلوية", "en": "Eyebrow" },
+                    "multilanguage": true, "format": "text", "required": false,
+                    "value": { "ar": "فلسفتنا", "en": "Our philosophy" }
+                },
+                {
+                    "type": "string", "icon": "sicon-format-text-alt",
+                    "id": "heading", "label": { "ar": "العنوان", "en": "Heading" },
+                    "multilanguage": true, "format": "text", "required": false,
+                    "value": { "ar": "أناقة خالدة", "en": "Timeless elegance" }
+                }
+            ]
+        },
+        {
             "key": "mek-hero-001",
             "title": { "ar": "الهيرو الرئيسي", "en": "Main Hero" },
             "icon": "sicon-image-carousel",
@@ -325,6 +345,26 @@
                     "fields": [
                         { "id": "images.image", "type": "string", "format": "image", "label": "صورة", "icon": "sicon-image", "value": null, "required": true }
                     ]
+                }
+            ]
+        },
+        {
+            "key": "mek-newsletter-007",
+            "title": { "ar": "النشرة البريدية", "en": "Newsletter" },
+            "icon": "sicon-email",
+            "path": "home.mek-newsletter",
+            "fields": [
+                {
+                    "type": "string", "icon": "sicon-format-text-alt",
+                    "id": "eyebrow", "label": { "ar": "العبارة العلوية", "en": "Eyebrow" },
+                    "multilanguage": true, "format": "text", "required": false,
+                    "value": { "ar": "انضمي إلى البيت", "en": "Join the house" }
+                },
+                {
+                    "type": "string", "icon": "sicon-format-text-alt",
+                    "id": "heading", "label": { "ar": "العنوان", "en": "Heading" },
+                    "multilanguage": true, "format": "text", "required": false,
+                    "value": { "ar": "اشتركي في قائمتنا البريدية", "en": "Subscribe to our newsletter" }
                 }
             ]
         },
