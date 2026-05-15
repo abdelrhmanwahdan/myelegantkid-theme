@@ -129,13 +129,14 @@
     ],
     "components": [
         {
-            "key": "mek-intro-000",
+            "key": "7eb9d346-255d-49b4-9b81-5fa098d9aca8",
             "title": {
                 "ar": "مقدمة تحريرية",
                 "en": "Editorial Intro"
             },
             "icon": "sicon-typography",
             "path": "home.mek-intro",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -172,13 +173,14 @@
             ]
         },
         {
-            "key": "mek-hero-001",
+            "key": "5c6dc486-57cd-4d6e-b903-3e91ba0d1195",
             "title": {
                 "ar": "الهيرو الرئيسي",
                 "en": "Main Hero"
             },
             "icon": "sicon-image-carousel",
             "path": "home.mek-hero",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -283,13 +285,14 @@
             ]
         },
         {
-            "key": "mek-featured-categories-002",
+            "key": "a7c11df7-e5f0-480e-bff9-9c9938e37a25",
             "title": {
                 "ar": "التصنيفات المميزة",
                 "en": "Featured Categories"
             },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.mek-featured-categories",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -326,13 +329,14 @@
             ]
         },
         {
-            "key": "mek-bestsellers-003",
+            "key": "ca58fda5-6b3a-4154-a2f3-55145f146dcd",
             "title": {
                 "ar": "الجواهر الثمينة",
                 "en": "Bestsellers"
             },
             "icon": "sicon-award-ribbon",
             "path": "home.mek-bestsellers",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -386,13 +390,14 @@
             ]
         },
         {
-            "key": "mek-editorial-banner-004",
+            "key": "c2703c44-9132-4488-a201-e801808fcaad",
             "title": {
                 "ar": "البانر التحريري",
                 "en": "Editorial Banner"
             },
             "icon": "sicon-image",
             "path": "home.mek-editorial-banner",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -469,13 +474,14 @@
             ]
         },
         {
-            "key": "mek-curated-005",
+            "key": "43315f53-6107-4b9d-8690-35d98e23d42a",
             "title": {
                 "ar": "مختارات نادرة",
                 "en": "Curated Picks"
             },
             "icon": "sicon-list-play",
             "path": "home.mek-curated",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -513,23 +519,25 @@
             ]
         },
         {
-            "key": "mek-marquee-007",
+            "key": "aa50f7e2-0eac-44b0-9362-bdb453eaad83",
             "title": {
                 "ar": "شريط العلامة",
                 "en": "Brand Marquee"
             },
             "icon": "sicon-text",
             "path": "home.mek-marquee",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": []
         },
         {
-            "key": "mek-collections-008",
+            "key": "d94b95e4-5d28-4cf4-b79c-e54c3f259ca9",
             "title": {
                 "ar": "التشكيلات المرقّمة",
                 "en": "Collections List"
             },
             "icon": "sicon-list-add",
             "path": "home.mek-collections",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -550,13 +558,14 @@
             ]
         },
         {
-            "key": "mek-story-009",
+            "key": "31161728-840f-4fdc-b426-d78863fc2cf1",
             "title": {
                 "ar": "قصة الأتيليه",
                 "en": "Brand Story"
             },
             "icon": "sicon-camera",
             "path": "home.mek-story",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -577,13 +586,14 @@
             ]
         },
         {
-            "key": "mek-community-010",
+            "key": "bef1d66f-e8b0-41a1-baa2-a02b7f8ab01b",
             "title": {
                 "ar": "شبكة المجتمع",
                 "en": "Community Grid"
             },
             "icon": "sicon-image",
             "path": "home.mek-community",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "id": "images",
@@ -613,13 +623,14 @@
             ]
         },
         {
-            "key": "mek-newsletter-007",
+            "key": "75086575-dd4e-47fe-b58e-c7b120cef2d6",
             "title": {
                 "ar": "النشرة البريدية",
                 "en": "Newsletter"
             },
             "icon": "sicon-email",
             "path": "home.mek-newsletter",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -656,13 +667,14 @@
             ]
         },
         {
-            "key": "mek-testimonials-006",
+            "key": "ad48b6c1-0abc-43b2-ada3-cf9c8cfb4e9c",
             "title": {
                 "ar": "آراء العملاء",
                 "en": "Testimonials"
             },
             "icon": "sicon-chat-bubbles",
             "path": "home.mek-testimonials",
+            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
