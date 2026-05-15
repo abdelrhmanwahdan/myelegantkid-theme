@@ -14,7 +14,7 @@
     "prod": "webpack --mode production",
     "development": "webpack --mode development",
     "watch": "webpack --mode development --watch",
-    "preview": "git tag -l 'v*' | xargs git tag -d 2>/dev/null; salla theme preview"
+    "preview": "git tag -l | xargs git tag -d 2>/dev/null; salla theme preview"
   },
   "author": "Salla",
   "dependencies": {
