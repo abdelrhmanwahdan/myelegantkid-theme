@@ -130,13 +130,9 @@
     "components": [
         {
             "key": "7eb9d346-255d-49b4-9b81-5fa098d9aca8",
-            "title": {
-                "ar": "مقدمة تحريرية",
-                "en": "Editorial Intro"
-            },
+            "title": "مقدمة تحريرية",
             "icon": "sicon-typography",
             "path": "home.mek-intro",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -174,13 +170,9 @@
         },
         {
             "key": "5c6dc486-57cd-4d6e-b903-3e91ba0d1195",
-            "title": {
-                "ar": "الهيرو الرئيسي",
-                "en": "Main Hero"
-            },
+            "title": "الهيرو الرئيسي",
             "icon": "sicon-image-carousel",
             "path": "home.mek-hero",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -286,13 +278,9 @@
         },
         {
             "key": "a7c11df7-e5f0-480e-bff9-9c9938e37a25",
-            "title": {
-                "ar": "التصنيفات المميزة",
-                "en": "Featured Categories"
-            },
+            "title": "التصنيفات المميزة",
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.mek-featured-categories",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -330,13 +318,9 @@
         },
         {
             "key": "ca58fda5-6b3a-4154-a2f3-55145f146dcd",
-            "title": {
-                "ar": "الجواهر الثمينة",
-                "en": "Bestsellers"
-            },
+            "title": "الجواهر الثمينة",
             "icon": "sicon-award-ribbon",
             "path": "home.mek-bestsellers",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -391,13 +375,9 @@
         },
         {
             "key": "c2703c44-9132-4488-a201-e801808fcaad",
-            "title": {
-                "ar": "البانر التحريري",
-                "en": "Editorial Banner"
-            },
+            "title": "البانر التحريري",
             "icon": "sicon-image",
             "path": "home.mek-editorial-banner",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -475,13 +455,9 @@
         },
         {
             "key": "43315f53-6107-4b9d-8690-35d98e23d42a",
-            "title": {
-                "ar": "مختارات نادرة",
-                "en": "Curated Picks"
-            },
+            "title": "مختارات نادرة",
             "icon": "sicon-list-play",
             "path": "home.mek-curated",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -520,24 +496,16 @@
         },
         {
             "key": "aa50f7e2-0eac-44b0-9362-bdb453eaad83",
-            "title": {
-                "ar": "شريط العلامة",
-                "en": "Brand Marquee"
-            },
+            "title": "شريط العلامات",
             "icon": "sicon-text",
             "path": "home.mek-marquee",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": []
         },
         {
             "key": "d94b95e4-5d28-4cf4-b79c-e54c3f259ca9",
-            "title": {
-                "ar": "التشكيلات المرقّمة",
-                "en": "Collections List"
-            },
+            "title": "التشكيلات",
             "icon": "sicon-list-add",
             "path": "home.mek-collections",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -559,13 +527,9 @@
         },
         {
             "key": "31161728-840f-4fdc-b426-d78863fc2cf1",
-            "title": {
-                "ar": "قصة الأتيليه",
-                "en": "Brand Story"
-            },
+            "title": "قصتنا",
             "icon": "sicon-camera",
             "path": "home.mek-story",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -587,13 +551,9 @@
         },
         {
             "key": "bef1d66f-e8b0-41a1-baa2-a02b7f8ab01b",
-            "title": {
-                "ar": "شبكة المجتمع",
-                "en": "Community Grid"
-            },
+            "title": "المجتمع",
             "icon": "sicon-image",
             "path": "home.mek-community",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "id": "images",
@@ -624,13 +584,9 @@
         },
         {
             "key": "75086575-dd4e-47fe-b58e-c7b120cef2d6",
-            "title": {
-                "ar": "النشرة البريدية",
-                "en": "Newsletter"
-            },
+            "title": "النشرة البريدية",
             "icon": "sicon-email",
             "path": "home.mek-newsletter",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
@@ -668,13 +624,9 @@
         },
         {
             "key": "ad48b6c1-0abc-43b2-ada3-cf9c8cfb4e9c",
-            "title": {
-                "ar": "آراء العملاء",
-                "en": "Testimonials"
-            },
+            "title": "آراء العملاء",
             "icon": "sicon-chat-bubbles",
             "path": "home.mek-testimonials",
-            "image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
             "fields": [
                 {
                     "type": "string",
