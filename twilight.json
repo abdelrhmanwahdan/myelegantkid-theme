@@ -18,7 +18,11 @@
         "component-parallax-background",
         "component-testimonials",
         "component-store-features",
-        "filters"
+        "filters",
+        "mega-menu",
+        "component-square-photos",
+        "component-random-testimonials",
+        "component-youtube"
     ],
     "settings": [
         {
@@ -126,273 +130,616 @@
     "components": [
         {
             "key": "mek-intro-000",
-            "title": { "ar": "مقدمة تحريرية", "en": "Editorial Intro" },
+            "title": {
+                "ar": "مقدمة تحريرية",
+                "en": "Editorial Intro"
+            },
             "icon": "sicon-typography",
             "path": "home.mek-intro",
             "fields": [
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "eyebrow", "label": { "ar": "العبارة العلوية", "en": "Eyebrow" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "فلسفتنا", "en": "Our philosophy" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "eyebrow",
+                    "label": {
+                        "ar": "العبارة العلوية",
+                        "en": "Eyebrow"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "فلسفتنا",
+                        "en": "Our philosophy"
+                    }
                 },
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "heading", "label": { "ar": "العنوان", "en": "Heading" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "أناقة خالدة", "en": "Timeless elegance" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "heading",
+                    "label": {
+                        "ar": "العنوان",
+                        "en": "Heading"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "أناقة خالدة",
+                        "en": "Timeless elegance"
+                    }
                 }
             ]
         },
         {
             "key": "mek-hero-001",
-            "title": { "ar": "الهيرو الرئيسي", "en": "Main Hero" },
+            "title": {
+                "ar": "الهيرو الرئيسي",
+                "en": "Main Hero"
+            },
             "icon": "sicon-image-carousel",
             "path": "home.mek-hero",
             "fields": [
                 {
-                    "type": "string", "icon": "sicon-image",
-                    "id": "image", "label": { "ar": "صورة الخلفية", "en": "Background Image" },
-                    "format": "image", "required": false, "value": null
+                    "type": "string",
+                    "icon": "sicon-image",
+                    "id": "image",
+                    "label": {
+                        "ar": "صورة الخلفية",
+                        "en": "Background Image"
+                    },
+                    "format": "image",
+                    "required": false,
+                    "value": null
                 },
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "heading", "label": { "ar": "العنوان الرئيسي", "en": "Main Heading" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "لحظة الاستقبال تستحق التفاصيل", "en": "Every first moment deserves the finest details" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "heading",
+                    "label": {
+                        "ar": "العنوان الرئيسي",
+                        "en": "Main Heading"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "لحظة الاستقبال تستحق التفاصيل",
+                        "en": "Every first moment deserves the finest details"
+                    }
                 },
                 {
-                    "type": "string", "icon": "sicon-typography",
-                    "id": "subheading", "label": { "ar": "النص الثانوي", "en": "Subheading" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "أزياء وإكسسوارات مختارة بعناية للمواليد والأطفال", "en": "Curated fashion & accessories for newborns and children" }
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "id": "subheading",
+                    "label": {
+                        "ar": "النص الثانوي",
+                        "en": "Subheading"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "أزياء وإكسسوارات مختارة بعناية للمواليد والأطفال",
+                        "en": "Curated fashion & accessories for newborns and children"
+                    }
                 },
                 {
-                    "type": "string", "icon": "sicon-link",
-                    "id": "cta_text", "label": { "ar": "نص الزر الأول", "en": "CTA 1 Text" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "تسوقي الآن", "en": "Shop Now" }
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "id": "cta_text",
+                    "label": {
+                        "ar": "نص الزر الأول",
+                        "en": "CTA 1 Text"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "تسوقي الآن",
+                        "en": "Shop Now"
+                    }
                 },
                 {
-                    "type": "string", "icon": "sicon-link",
-                    "id": "cta_url", "label": { "ar": "رابط الزر الأول", "en": "CTA 1 URL" },
-                    "format": "text", "required": false, "value": "/shop/products"
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "id": "cta_url",
+                    "label": {
+                        "ar": "رابط الزر الأول",
+                        "en": "CTA 1 URL"
+                    },
+                    "format": "text",
+                    "required": false,
+                    "value": "/shop/products"
                 },
                 {
-                    "type": "string", "icon": "sicon-link",
-                    "id": "cta2_text", "label": { "ar": "نص الزر الثاني", "en": "CTA 2 Text" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "القصة", "en": "Our Story" }
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "id": "cta2_text",
+                    "label": {
+                        "ar": "نص الزر الثاني",
+                        "en": "CTA 2 Text"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "القصة",
+                        "en": "Our Story"
+                    }
                 },
                 {
-                    "type": "string", "icon": "sicon-link",
-                    "id": "cta2_url", "label": { "ar": "رابط الزر الثاني", "en": "CTA 2 URL" },
-                    "format": "text", "required": false, "value": "/page/about"
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "id": "cta2_url",
+                    "label": {
+                        "ar": "رابط الزر الثاني",
+                        "en": "CTA 2 URL"
+                    },
+                    "format": "text",
+                    "required": false,
+                    "value": "/page/about"
                 }
             ]
         },
         {
             "key": "mek-featured-categories-002",
-            "title": { "ar": "التصنيفات المميزة", "en": "Featured Categories" },
+            "title": {
+                "ar": "التصنيفات المميزة",
+                "en": "Featured Categories"
+            },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.mek-featured-categories",
             "fields": [
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "title", "label": { "ar": "العنوان", "en": "Title" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "تسوقي حسب التصنيف", "en": "Shop by Category" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "title",
+                    "label": {
+                        "ar": "العنوان",
+                        "en": "Title"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "تسوقي حسب التصنيف",
+                        "en": "Shop by Category"
+                    }
                 },
                 {
-                    "type": "items", "icon": "sicon-keyboard_arrow_down",
-                    "id": "categories", "label": { "ar": "التصنيفات", "en": "Categories" },
-                    "format": "dropdown-list", "source": "categories",
-                    "multichoice": true, "searchable": true,
-                    "required": false, "selected": [], "options": []
+                    "type": "items",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "id": "categories",
+                    "label": {
+                        "ar": "التصنيفات",
+                        "en": "Categories"
+                    },
+                    "format": "dropdown-list",
+                    "source": "categories",
+                    "multichoice": true,
+                    "searchable": true,
+                    "required": false,
+                    "selected": [],
+                    "options": []
                 }
             ]
         },
         {
             "key": "mek-bestsellers-003",
-            "title": { "ar": "الجواهر الثمينة", "en": "Bestsellers" },
+            "title": {
+                "ar": "الجواهر الثمينة",
+                "en": "Bestsellers"
+            },
             "icon": "sicon-award-ribbon",
             "path": "home.mek-bestsellers",
             "fields": [
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "kicker", "label": { "ar": "العبارة الصغيرة فوق العنوان", "en": "Eyebrow Text" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "مختارات نادرة", "en": "refined essentials" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "kicker",
+                    "label": {
+                        "ar": "العبارة الصغيرة فوق العنوان",
+                        "en": "Eyebrow Text"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "مختارات نادرة",
+                        "en": "refined essentials"
+                    }
                 },
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "title", "label": { "ar": "العنوان الرئيسي", "en": "Section Title" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "الجواهر الثمينة", "en": "Coveted Pieces" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "title",
+                    "label": {
+                        "ar": "العنوان الرئيسي",
+                        "en": "Section Title"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "الجواهر الثمينة",
+                        "en": "Coveted Pieces"
+                    }
                 },
                 {
-                    "type": "items", "icon": "sicon-keyboard_arrow_down",
-                    "id": "products", "label": { "ar": "المنتجات", "en": "Products" },
-                    "format": "dropdown-list", "source": "products",
-                    "multichoice": true, "searchable": true, "maxLength": 8,
-                    "required": false, "selected": [], "options": []
+                    "type": "items",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "id": "products",
+                    "label": {
+                        "ar": "المنتجات",
+                        "en": "Products"
+                    },
+                    "format": "dropdown-list",
+                    "source": "products",
+                    "multichoice": true,
+                    "searchable": true,
+                    "maxLength": 8,
+                    "required": false,
+                    "selected": [],
+                    "options": []
                 }
             ]
         },
         {
             "key": "mek-editorial-banner-004",
-            "title": { "ar": "البانر التحريري", "en": "Editorial Banner" },
+            "title": {
+                "ar": "البانر التحريري",
+                "en": "Editorial Banner"
+            },
             "icon": "sicon-image",
             "path": "home.mek-editorial-banner",
             "fields": [
                 {
-                    "type": "string", "icon": "sicon-image",
-                    "id": "image", "label": { "ar": "الصورة", "en": "Image" },
-                    "format": "image", "required": false, "value": null
+                    "type": "string",
+                    "icon": "sicon-image",
+                    "id": "image",
+                    "label": {
+                        "ar": "الصورة",
+                        "en": "Image"
+                    },
+                    "format": "image",
+                    "required": false,
+                    "value": null
                 },
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "heading", "label": { "ar": "العنوان", "en": "Heading" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "لمسة من الفخامة", "en": "A Touch of Luxury" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "heading",
+                    "label": {
+                        "ar": "العنوان",
+                        "en": "Heading"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "لمسة من الفخامة",
+                        "en": "A Touch of Luxury"
+                    }
                 },
                 {
-                    "type": "string", "icon": "sicon-typography",
-                    "id": "body", "label": { "ar": "النص", "en": "Body Text" },
-                    "multilanguage": true, "format": "textarea", "required": false,
-                    "value": { "ar": "كل قطعة تُختار بعين الأم وقلب الأتيليه.", "en": "Every piece is chosen with a mother's eye and an atelier's heart." }
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "id": "body",
+                    "label": {
+                        "ar": "النص",
+                        "en": "Body Text"
+                    },
+                    "multilanguage": true,
+                    "format": "textarea",
+                    "required": false,
+                    "value": {
+                        "ar": "كل قطعة تُختار بعين الأم وقلب الأتيليه.",
+                        "en": "Every piece is chosen with a mother's eye and an atelier's heart."
+                    }
                 },
                 {
-                    "type": "string", "icon": "sicon-link",
-                    "id": "cta_text", "label": { "ar": "نص الزر", "en": "CTA Text" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "اقرئي قصتنا", "en": "Read Our Story" }
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "id": "cta_text",
+                    "label": {
+                        "ar": "نص الزر",
+                        "en": "CTA Text"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "اقرئي قصتنا",
+                        "en": "Read Our Story"
+                    }
                 },
                 {
-                    "type": "string", "icon": "sicon-link",
-                    "id": "cta_url", "label": { "ar": "رابط الزر", "en": "CTA URL" },
-                    "format": "text", "required": false, "value": "/page/about"
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "id": "cta_url",
+                    "label": {
+                        "ar": "رابط الزر",
+                        "en": "CTA URL"
+                    },
+                    "format": "text",
+                    "required": false,
+                    "value": "/page/about"
                 }
             ]
         },
         {
             "key": "mek-curated-005",
-            "title": { "ar": "مختارات نادرة", "en": "Curated Picks" },
+            "title": {
+                "ar": "مختارات نادرة",
+                "en": "Curated Picks"
+            },
             "icon": "sicon-list-play",
             "path": "home.mek-curated",
             "fields": [
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "title", "label": { "ar": "عنوان القسم", "en": "Section Title" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "مختارات نادرة", "en": "Curated Picks" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "title",
+                    "label": {
+                        "ar": "عنوان القسم",
+                        "en": "Section Title"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "مختارات نادرة",
+                        "en": "Curated Picks"
+                    }
                 },
                 {
-                    "type": "items", "icon": "sicon-keyboard_arrow_down",
-                    "id": "products", "label": { "ar": "المنتجات", "en": "Products" },
-                    "format": "dropdown-list", "source": "products",
-                    "multichoice": true, "searchable": true, "maxLength": 4,
-                    "required": false, "selected": [], "options": []
+                    "type": "items",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "id": "products",
+                    "label": {
+                        "ar": "المنتجات",
+                        "en": "Products"
+                    },
+                    "format": "dropdown-list",
+                    "source": "products",
+                    "multichoice": true,
+                    "searchable": true,
+                    "maxLength": 4,
+                    "required": false,
+                    "selected": [],
+                    "options": []
                 }
             ]
         },
         {
             "key": "mek-marquee-007",
-            "title": { "ar": "شريط العلامة", "en": "Brand Marquee" },
+            "title": {
+                "ar": "شريط العلامة",
+                "en": "Brand Marquee"
+            },
             "icon": "sicon-text",
             "path": "home.mek-marquee",
             "fields": []
         },
         {
             "key": "mek-collections-008",
-            "title": { "ar": "التشكيلات المرقّمة", "en": "Collections List" },
+            "title": {
+                "ar": "التشكيلات المرقّمة",
+                "en": "Collections List"
+            },
             "icon": "sicon-list-add",
             "path": "home.mek-collections",
             "fields": [
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "title", "label": { "ar": "العنوان", "en": "Title" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "التشكيلات", "en": "The Collections" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "title",
+                    "label": {
+                        "ar": "العنوان",
+                        "en": "Title"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "التشكيلات",
+                        "en": "The Collections"
+                    }
                 }
             ]
         },
         {
             "key": "mek-story-009",
-            "title": { "ar": "قصة الأتيليه", "en": "Brand Story" },
+            "title": {
+                "ar": "قصة الأتيليه",
+                "en": "Brand Story"
+            },
             "icon": "sicon-camera",
             "path": "home.mek-story",
             "fields": [
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "heading", "label": { "ar": "العنوان", "en": "Heading" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "من فكرة إلى أناقة خالدة", "en": "From an idea to timeless elegance" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "heading",
+                    "label": {
+                        "ar": "العنوان",
+                        "en": "Heading"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "من فكرة إلى أناقة خالدة",
+                        "en": "From an idea to timeless elegance"
+                    }
                 }
             ]
         },
         {
             "key": "mek-community-010",
-            "title": { "ar": "شبكة المجتمع", "en": "Community Grid" },
+            "title": {
+                "ar": "شبكة المجتمع",
+                "en": "Community Grid"
+            },
             "icon": "sicon-image",
             "path": "home.mek-community",
             "fields": [
                 {
-                    "id": "images", "type": "collection", "format": "collection",
-                    "label": { "ar": "الصور", "en": "Images" },
-                    "item_label": "صورة", "required": false, "minLength": 1, "maxLength": 6,
+                    "id": "images",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": {
+                        "ar": "الصور",
+                        "en": "Images"
+                    },
+                    "item_label": "صورة",
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 6,
                     "value": [],
                     "fields": [
-                        { "id": "images.image", "type": "string", "format": "image", "label": "صورة", "icon": "sicon-image", "value": null, "required": true }
+                        {
+                            "id": "images.image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "صورة",
+                            "icon": "sicon-image",
+                            "value": null,
+                            "required": true
+                        }
                     ]
                 }
             ]
         },
         {
             "key": "mek-newsletter-007",
-            "title": { "ar": "النشرة البريدية", "en": "Newsletter" },
+            "title": {
+                "ar": "النشرة البريدية",
+                "en": "Newsletter"
+            },
             "icon": "sicon-email",
             "path": "home.mek-newsletter",
             "fields": [
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "eyebrow", "label": { "ar": "العبارة العلوية", "en": "Eyebrow" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "انضمي إلى البيت", "en": "Join the house" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "eyebrow",
+                    "label": {
+                        "ar": "العبارة العلوية",
+                        "en": "Eyebrow"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "انضمي إلى البيت",
+                        "en": "Join the house"
+                    }
                 },
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "heading", "label": { "ar": "العنوان", "en": "Heading" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "اشتركي في قائمتنا البريدية", "en": "Subscribe to our newsletter" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "heading",
+                    "label": {
+                        "ar": "العنوان",
+                        "en": "Heading"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "اشتركي في قائمتنا البريدية",
+                        "en": "Subscribe to our newsletter"
+                    }
                 }
             ]
         },
         {
             "key": "mek-testimonials-006",
-            "title": { "ar": "آراء العملاء", "en": "Testimonials" },
+            "title": {
+                "ar": "آراء العملاء",
+                "en": "Testimonials"
+            },
             "icon": "sicon-chat-bubbles",
             "path": "home.mek-testimonials",
             "fields": [
                 {
-                    "type": "string", "icon": "sicon-format-text-alt",
-                    "id": "title", "label": { "ar": "العنوان", "en": "Title" },
-                    "multilanguage": true, "format": "text", "required": false,
-                    "value": { "ar": "يقولون عنّا", "en": "What They Say" }
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "title",
+                    "label": {
+                        "ar": "العنوان",
+                        "en": "Title"
+                    },
+                    "multilanguage": true,
+                    "format": "text",
+                    "required": false,
+                    "value": {
+                        "ar": "يقولون عنّا",
+                        "en": "What They Say"
+                    }
                 },
                 {
-                    "id": "items", "type": "collection", "format": "collection",
-                    "label": { "ar": "التقييمات", "en": "Reviews" },
-                    "item_label": "تقييم", "required": false, "minLength": 1, "maxLength": 10,
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": {
+                        "ar": "التقييمات",
+                        "en": "Reviews"
+                    },
+                    "item_label": "تقييم",
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 10,
                     "value": [
-                        { "items.name": "نورة العتيبي", "items.stars": 5, "items.text": "ما شاء الله، كل قطعة فخمة وتليق بطفلي الغالي ❤️" },
-                        { "items.name": "ريم الحربي", "items.stars": 5, "items.text": "من أفضل المتاجر — التغليف رائع والجودة لا توصف 🌸" },
-                        { "items.name": "هيا الشمري", "items.stars": 5, "items.text": "وصل بسرعة ومظهره أجمل من الصور. شكراً جزيلاً!" }
+                        {
+                            "items.name": "نورة العتيبي",
+                            "items.stars": 5,
+                            "items.text": "ما شاء الله، كل قطعة فخمة وتليق بطفلي الغالي ❤️"
+                        },
+                        {
+                            "items.name": "ريم الحربي",
+                            "items.stars": 5,
+                            "items.text": "من أفضل المتاجر — التغليف رائع والجودة لا توصف 🌸"
+                        },
+                        {
+                            "items.name": "هيا الشمري",
+                            "items.stars": 5,
+                            "items.text": "وصل بسرعة ومظهره أجمل من الصور. شكراً جزيلاً!"
+                        }
                     ],
                     "fields": [
-                        { "id": "items.name", "type": "string", "format": "text", "label": "اسم العميلة", "icon": "sicon-format-text-alt", "value": null, "required": false },
-                        { "id": "items.stars", "type": "number", "format": "integer", "label": "التقييم (1-5)", "icon": "sicon-pencil-ruler", "value": 5, "required": false, "minimum": 1, "maximum": 5 },
-                        { "id": "items.text", "type": "string", "format": "textarea", "label": "نص التقييم", "multilanguage": true, "icon": "sicon-format-text-alt", "value": null, "required": false }
+                        {
+                            "id": "items.name",
+                            "type": "string",
+                            "format": "text",
+                            "label": "اسم العميلة",
+                            "icon": "sicon-format-text-alt",
+                            "value": null,
+                            "required": false
+                        },
+                        {
+                            "id": "items.stars",
+                            "type": "number",
+                            "format": "integer",
+                            "label": "التقييم (1-5)",
+                            "icon": "sicon-pencil-ruler",
+                            "value": 5,
+                            "required": false,
+                            "minimum": 1,
+                            "maximum": 5
+                        },
+                        {
+                            "id": "items.text",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "نص التقييم",
+                            "multilanguage": true,
+                            "icon": "sicon-format-text-alt",
+                            "value": null,
+                            "required": false
+                        }
                     ]
                 }
             ]
